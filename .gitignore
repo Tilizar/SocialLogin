@@ -55,5 +55,5 @@ gen-external-apklibs
 
 # Api Keys
 gradle.properties
-app/src/res/values/apiKeys.xml
+app/src/main/res/values/api-keys.xml
 
