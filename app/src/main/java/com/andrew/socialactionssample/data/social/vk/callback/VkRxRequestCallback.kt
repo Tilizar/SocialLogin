@@ -31,7 +31,7 @@ class VkRxRequestCallback(private var request: VKRequest) : VKRequest.VKRequestL
         subject.onError(VkException(error?.errorMessage))
     }
 
-    fun observeVkRequest() : Single<VKResponse> =
+    fun observe(): Single<VKResponse> =
             subject.firstOrError()
-            .subscribeOn(Schedulers.io())
+                    .subscribeOn(Schedulers.io())
 }

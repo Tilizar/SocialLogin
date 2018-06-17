@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SimpleItemAnimator
 import com.andrew.socialactionssample.R
 import com.andrew.socialactionssample.data.social.SocialLoginManager
-import com.andrew.socialactionssample.data.social.qualifier.SocialType
+import com.andrew.socialactionssample.data.social.SocialType
 import com.andrew.socialactionssample.presentation.feature.base.view.BaseActivity
 import com.andrew.socialactionssample.presentation.feature.base.view.Layout
 import com.andrew.socialactionssample.presentation.feature.main.adapter.SocialsAdapter
@@ -47,15 +47,16 @@ class MainActivity : BaseActivity<MainPresenter, MainView>(), MainView, SocialsA
     }
 
     override fun updateToken(socialType: SocialType, token: String, info: String) {
-        adapter.updateToken(socialType, token, info)
+        adapter.updateSocial(socialType, token, info)
     }
 
-    override fun loginClick(social: SocialType) {
-        loginManager.login(social)
+    override fun loginClick(socialType: SocialType) {
+        loginManager.login(socialType)
     }
 
-    override fun logoutClick(social: SocialType) {
-        loginManager.logout(social)
+    override fun logoutClick(socialType: SocialType) {
+        loginManager.logout(socialType)
+        adapter.updateSocial(socialType, "", "")
     }
 
     private fun setupRecycler() {

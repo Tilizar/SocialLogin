@@ -27,8 +27,8 @@ class VkRxLoginStateCallback : VKCallback<VKSdk.LoginState> {
         subject.onError(VkException(error?.errorMessage))
     }
 
-    fun observeVkLogoutState() : Single<VKSdk.LoginState> =
+    fun observe(): Single<VKSdk.LoginState> =
             subject.filter { it == VKSdk.LoginState.LoggedOut }
-            .firstOrError()
-            .subscribeOn(Schedulers.io())
+                    .firstOrError()
+                    .subscribeOn(Schedulers.io())
 }

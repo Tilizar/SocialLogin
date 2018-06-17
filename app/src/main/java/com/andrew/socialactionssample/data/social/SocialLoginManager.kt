@@ -2,7 +2,6 @@ package com.andrew.socialactionssample.data.social
 
 import android.content.Intent
 import com.andrew.socialactionssample.data.social.base.SocialLoginAction
-import com.andrew.socialactionssample.data.social.qualifier.SocialType
 
 /**
  * Created by Andrew on 16.06.2018.
@@ -11,8 +10,7 @@ import com.andrew.socialactionssample.data.social.qualifier.SocialType
 class SocialLoginManager (private val socialLoginActions: Map<SocialType, SocialLoginAction>) {
 
     interface LoginCallback {
-        fun onSuccessLogin(socialType: SocialType, token: String, info: String)
-        fun onSuccessLogout(socialType: SocialType)
+        fun onSuccess(socialType: SocialType, token: String, info: String)
         fun onError(error: Throwable)
     }
 

@@ -1,6 +1,6 @@
 package com.andrew.socialactionssample.presentation.feature.main.view
 
-import com.andrew.socialactionssample.data.social.qualifier.SocialType
+import com.andrew.socialactionssample.data.social.SocialType
 import com.andrew.socialactionssample.presentation.feature.base.view.BaseView
 
 /**

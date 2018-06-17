@@ -11,6 +11,7 @@ import io.reactivex.subjects.AsyncSubject
 /**
  * Created by Andrew on 17.06.2018.
  */
+
 class VkRxTokenCallback : VKCallback<VKAccessToken> {
 
     private var subject: AsyncSubject<VKAccessToken> = AsyncSubject.create()
@@ -26,7 +27,7 @@ class VkRxTokenCallback : VKCallback<VKAccessToken> {
         subject.onError(VkException(error?.errorMessage))
     }
 
-    fun observeVkToken() : Single<VKAccessToken> =
+    fun observe(): Single<VKAccessToken> =
             subject.firstOrError()
                     .subscribeOn(Schedulers.io())
 }

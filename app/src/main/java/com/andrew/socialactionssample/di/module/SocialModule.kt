@@ -2,10 +2,11 @@ package com.andrew.socialactionssample.di.module
 
 import android.support.v7.app.AppCompatActivity
 import com.andrew.socialactionssample.data.social.SocialLoginManager
+import com.andrew.socialactionssample.data.social.SocialType
 import com.andrew.socialactionssample.data.social.base.SocialLoginAction
-import com.andrew.socialactionssample.data.social.qualifier.SocialKey
-import com.andrew.socialactionssample.data.social.qualifier.SocialType
+import com.andrew.socialactionssample.data.social.twitter.TwitterLoginActionImpl
 import com.andrew.socialactionssample.data.social.vk.VkLoginActionImpl
+import com.andrew.socialactionssample.di.qualifier.SocialKey
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
@@ -21,6 +22,11 @@ class SocialModule {
     @IntoMap
     @SocialKey(SocialType.VK)
     fun provideVkSocialAction(activity: AppCompatActivity): SocialLoginAction = VkLoginActionImpl(activity)
+
+    @Provides
+    @IntoMap
+    @SocialKey(SocialType.TWITTER)
+    fun provideTwitterSocialAction(activity: AppCompatActivity): SocialLoginAction = TwitterLoginActionImpl(activity)
 
     @Provides
     fun provideSocialLoginManager(socialLoginActions: Map<SocialType, @JvmSuppressWildcards SocialLoginAction>) =
