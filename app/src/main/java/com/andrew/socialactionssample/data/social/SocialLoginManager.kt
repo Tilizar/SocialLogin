@@ -11,7 +11,8 @@ import com.andrew.socialactionssample.data.social.qualifier.SocialType
 class SocialLoginManager (private val socialLoginActions: Map<SocialType, SocialLoginAction>) {
 
     interface LoginCallback {
-        fun onSuccess(socialType: SocialType, token: String)
+        fun onSuccessLogin(socialType: SocialType, token: String, info: String)
+        fun onSuccessLogout(socialType: SocialType)
         fun onError(error: Throwable)
     }
 
@@ -20,22 +21,25 @@ class SocialLoginManager (private val socialLoginActions: Map<SocialType, Social
     }
 
     fun disposeLoginCallback() {
-        socialLoginActions.forEach { it.value.callback = null }
+        socialLoginActions.forEach {
+            it.value.cancelRequest()
+            it.value.callback = null
+        }
     }
 
     fun login(socialType: SocialType) {
         socialLoginActions[socialType]?.login()
     }
 
-    fun logout() {
-        socialLoginActions.forEach { it.value.logout() }
+    fun logout(socialType: SocialType) {
+        socialLoginActions[socialType]?.logout()
+    }
+
+    fun cancelRequest(socialType: SocialType) {
+        socialLoginActions[socialType]?.cancelRequest()
     }
 
     fun handleResult(requestCode: Int, resultCode: Int, data: Intent?) {
         socialLoginActions.forEach { it.value.handleResult(requestCode, resultCode, data) }
-    }
-
-    fun stop() {
-        socialLoginActions.forEach { it.value.cancelRequest() }
     }
 }

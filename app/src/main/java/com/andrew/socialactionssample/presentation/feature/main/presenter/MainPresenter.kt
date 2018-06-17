@@ -16,8 +16,12 @@ import javax.inject.Inject
 class MainPresenter @Inject constructor() : BasePresenter<MainView>(),
         SocialLoginManager.LoginCallback {
 
-    override fun onSuccess(socialType: SocialType, token: String) {
-        Log.d("SOCIAL", token)
+    override fun onSuccessLogin(socialType: SocialType, token: String, info: String) {
+        view?.updateToken(socialType, token, info)
+    }
+
+    override fun onSuccessLogout(socialType: SocialType) {
+        view?.updateToken(socialType, "", "")
     }
 
     override fun onError(error: Throwable) {
