@@ -24,7 +24,9 @@ class SocialsAdapter(private var socialsClick: SocialClickListener) :
         fun logoutClick(socialType: SocialType)
     }
 
-    var socials: List<SocialModel> = arrayListOf(SocialModel(SocialType.VK), SocialModel(SocialType.TWITTER))
+    var socials: List<SocialModel> = arrayListOf(SocialModel(SocialType.VK),
+            SocialModel(SocialType.TWITTER),
+            SocialModel(SocialType.INSTAGRAM))
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             SocialViewHolder(parent.inflate(R.layout.item_social))

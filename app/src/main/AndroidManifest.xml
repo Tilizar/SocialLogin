@@ -24,6 +24,12 @@
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent" />
 
+        <activity
+            android:name=".data.social.instagram.view.InstagramLoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/FullscreenWebView" />
+
     </application>
 
 </manifest>

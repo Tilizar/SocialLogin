@@ -11,6 +11,8 @@ import com.andrew.socialactionssample.presentation.feature.base.view.BaseActivit
 import com.andrew.socialactionssample.presentation.feature.base.view.Layout
 import com.andrew.socialactionssample.presentation.feature.main.adapter.SocialsAdapter
 import com.andrew.socialactionssample.presentation.feature.main.presenter.MainPresenter
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -19,7 +21,7 @@ import javax.inject.Inject
  */
 
 @Layout(R.layout.activity_main)
-class MainActivity : BaseActivity<MainPresenter, MainView>(), MainView, SocialsAdapter.SocialClickListener {
+class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListener {
 
     @Inject
     lateinit var loginManager: SocialLoginManager
@@ -29,6 +31,13 @@ class MainActivity : BaseActivity<MainPresenter, MainView>(), MainView, SocialsA
 
     @Inject
     lateinit var layoutManager: LinearLayoutManager
+
+    @Inject
+    @InjectPresenter
+    lateinit var presenter: MainPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

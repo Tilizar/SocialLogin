@@ -1,11 +1,11 @@
 package com.andrew.socialactionssample.presentation.feature.main.presenter
 
-import android.util.Log
 import com.andrew.socialactionssample.data.social.SocialLoginManager
 import com.andrew.socialactionssample.data.social.SocialType
 import com.andrew.socialactionssample.di.PerActivity
-import com.andrew.socialactionssample.presentation.feature.base.presenter.BasePresenter
 import com.andrew.socialactionssample.presentation.feature.main.view.MainView
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import javax.inject.Inject
 
 /**
@@ -13,14 +13,15 @@ import javax.inject.Inject
  */
 
 @PerActivity
-class MainPresenter @Inject constructor() : BasePresenter<MainView>(),
+@InjectViewState
+class MainPresenter @Inject constructor() : MvpPresenter<MainView>(),
         SocialLoginManager.LoginCallback {
 
     override fun onSuccess(socialType: SocialType, token: String, info: String) {
-        view?.updateToken(socialType, token, info)
+        viewState.updateToken(socialType, token, info)
     }
 
     override fun onError(error: Throwable) {
-        Log.d("SOCIAL", error.message)
+        error.printStackTrace()
     }
 }

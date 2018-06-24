@@ -1,35 +1,19 @@
 package com.andrew.socialactionssample.presentation.feature.base.view
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.andrew.socialactionssample.presentation.feature.base.presenter.BasePresenter
+import com.arellomobile.mvp.MvpAppCompatActivity
 import dagger.android.AndroidInjection
-import javax.inject.Inject
 
 /**
  * Created by Andrew on 16.06.2018.
  */
 
-abstract class BaseActivity<Presenter : BasePresenter<View>, View : BaseView> : AppCompatActivity(), BaseView {
-
-    @Inject
-    lateinit var presenter: Presenter
+abstract class BaseActivity : MvpAppCompatActivity(), BaseView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setupContentView()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        presenter.onViewAttached(this as View)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        presenter.onStop()
-        presenter.onViewDetached()
     }
 
     private fun setupContentView() {

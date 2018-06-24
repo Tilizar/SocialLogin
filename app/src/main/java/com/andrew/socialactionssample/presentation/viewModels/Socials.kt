@@ -16,7 +16,8 @@ data class SocialModel(var socialType: SocialType,
 enum class SocialViewType(var socialType: SocialType,
                           @DrawableRes var drawableRes: Int) {
     VK(SocialType.VK, R.drawable.logo_vk),
-    TWITTER(SocialType.TWITTER, R.drawable.logo_twitter);
+    TWITTER(SocialType.TWITTER, R.drawable.logo_twitter),
+    INSTAGRAM(SocialType.INSTAGRAM, R.drawable.logo_instagram);
 
     companion object {
         fun getSocialViewType(socialType: SocialType) = values().firstOrNull { it.socialType == socialType }

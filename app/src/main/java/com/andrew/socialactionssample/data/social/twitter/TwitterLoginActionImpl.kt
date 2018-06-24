@@ -44,5 +44,4 @@ class TwitterLoginActionImpl(activity: AppCompatActivity) : SocialLoginAction(ac
     override fun cancelRequest() {
         disposable = null
     }
-
 }
