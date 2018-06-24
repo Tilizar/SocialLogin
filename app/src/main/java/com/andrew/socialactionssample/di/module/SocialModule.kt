@@ -5,6 +5,7 @@ import com.andrew.socialactionssample.R
 import com.andrew.socialactionssample.data.social.SocialLoginManager
 import com.andrew.socialactionssample.data.social.SocialType
 import com.andrew.socialactionssample.data.social.base.SocialLoginAction
+import com.andrew.socialactionssample.data.social.facebook.FacebookLoginActionImpl
 import com.andrew.socialactionssample.data.social.instagram.InstagramLoginActionImpl
 import com.andrew.socialactionssample.data.social.twitter.TwitterLoginActionImpl
 import com.andrew.socialactionssample.data.social.vk.VkLoginActionImpl
@@ -34,7 +35,13 @@ class SocialModule {
     @IntoMap
     @SocialKey(SocialType.INSTAGRAM)
     fun provideInstagramSocialAction(activity: AppCompatActivity): SocialLoginAction
-            = InstagramLoginActionImpl(activity, activity.getString(R.string.instagram_id), activity.getString(R.string.instagram_redirect_url))
+            = InstagramLoginActionImpl(activity, activity.getString(R.string.instagram_id),
+            activity.getString(R.string.instagram_redirect_url))
+
+    @Provides
+    @IntoMap
+    @SocialKey(SocialType.FACEBOOK)
+    fun provideFacebookSocialAction(activity: AppCompatActivity): SocialLoginAction = FacebookLoginActionImpl(activity)
 
     @Provides
     fun provideSocialLoginManager(socialLoginActions: Map<SocialType, @JvmSuppressWildcards SocialLoginAction>) =

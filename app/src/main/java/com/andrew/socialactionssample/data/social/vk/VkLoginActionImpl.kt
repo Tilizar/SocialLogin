@@ -67,8 +67,4 @@ class VkLoginActionImpl(activity: AppCompatActivity) : SocialLoginAction(activit
         return VkRxRequestCallback(request)
                 .observe()
     }
-
-    private enum class Type {
-        LOGIN, LOGOUT
-    }
 }

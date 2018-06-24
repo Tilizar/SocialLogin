@@ -12,7 +12,7 @@ import io.reactivex.subjects.AsyncSubject
  * Created by Andrew on 17.06.2018.
  */
 
-class VkRxRequestCallback(private var request: VKRequest) : VKRequest.VKRequestListener() {
+class VkRxRequestCallback(request: VKRequest) : VKRequest.VKRequestListener() {
 
     private var subject: AsyncSubject<VKResponse> = AsyncSubject.create()
 

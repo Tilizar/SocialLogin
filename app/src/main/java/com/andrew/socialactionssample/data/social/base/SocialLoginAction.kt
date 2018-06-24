@@ -13,7 +13,10 @@ abstract class SocialLoginAction(var activity: AppCompatActivity) {
     var callback: SocialLoginManager.LoginCallback? = null
 
     abstract fun login()
+
     abstract fun logout()
+
     abstract fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?)
+
     abstract fun cancelRequest()
 }
