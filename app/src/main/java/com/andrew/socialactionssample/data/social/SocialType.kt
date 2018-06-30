@@ -5,5 +5,5 @@ package com.andrew.socialactionssample.data.social
  */
 
 enum class SocialType {
-    VK, TWITTER, INSTAGRAM, FACEBOOK
+    VK, TWITTER, INSTAGRAM, FACEBOOK, GOOGLE
 }

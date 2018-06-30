@@ -6,6 +6,7 @@ import com.andrew.socialactionssample.data.social.SocialLoginManager
 import com.andrew.socialactionssample.data.social.SocialType
 import com.andrew.socialactionssample.data.social.base.SocialLoginAction
 import com.andrew.socialactionssample.data.social.facebook.FacebookLoginActionImpl
+import com.andrew.socialactionssample.data.social.google.GoogleLoginActionImpl
 import com.andrew.socialactionssample.data.social.instagram.InstagramLoginActionImpl
 import com.andrew.socialactionssample.data.social.twitter.TwitterLoginActionImpl
 import com.andrew.socialactionssample.data.social.vk.VkLoginActionImpl
@@ -42,6 +43,11 @@ class SocialModule {
     @IntoMap
     @SocialKey(SocialType.FACEBOOK)
     fun provideFacebookSocialAction(activity: AppCompatActivity): SocialLoginAction = FacebookLoginActionImpl(activity)
+
+    @Provides
+    @IntoMap
+    @SocialKey(SocialType.GOOGLE)
+    fun provideGooglePlusSocialAction(activity: AppCompatActivity): SocialLoginAction = GoogleLoginActionImpl(activity)
 
     @Provides
     fun provideSocialLoginManager(socialLoginActions: Map<SocialType, @JvmSuppressWildcards SocialLoginAction>) =
