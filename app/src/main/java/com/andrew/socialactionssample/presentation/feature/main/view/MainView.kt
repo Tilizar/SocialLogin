@@ -1,7 +1,7 @@
 package com.andrew.socialactionssample.presentation.feature.main.view
 
 import com.andrew.socialactionssample.presentation.feature.base.view.BaseView
-import com.andrew.social.login.base.SocialType
+import com.andrew.social.login.core.SocialType
 
 /**
  * Created by Andrew on 16.06.2018.

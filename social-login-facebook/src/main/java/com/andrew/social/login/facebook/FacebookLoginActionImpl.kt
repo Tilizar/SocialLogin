@@ -4,8 +4,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import com.andrew.social.login.facebook.callback.FacebookLoginCallback
 import com.andrew.social.login.facebook.callback.FacebookProfileCallback
-import com.andrew.social.login.base.action.SocialLoginAction
-import com.andrew.social.login.base.SocialType
+import com.andrew.social.login.core.action.SocialLoginAction
+import com.andrew.social.login.core.SocialType
 import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
 import io.reactivex.Single

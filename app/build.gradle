@@ -55,10 +55,10 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
 
     //socials
-    implementation project(':social-login-base')
+    implementation project(':social-login-core')
     implementation project(':social-login-facebook')
     implementation project(':social-login-google')
     implementation project(':social-login-instagram')
     implementation project(':social-login-twitter')
-    implementation project(':social-login-vk')
+    implementation project(':social-login-vkontakte')
 }

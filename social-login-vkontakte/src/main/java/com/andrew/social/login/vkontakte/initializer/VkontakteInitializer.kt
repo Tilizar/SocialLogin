@@ -1,16 +1,16 @@
-package com.andrew.social.login.facebook.initializer
+package com.andrew.social.login.vkontakte.initializer
 
 import android.app.Application
 import com.andrew.social.login.core.initializer.Initializer
-import com.facebook.appevents.AppEventsLogger
+import com.vk.sdk.VKSdk
 
 /**
  * Created by Andrew on 01.07.2018
  */
 
-class FacebookInitializer : Initializer {
+class VkontakteInitializer : Initializer {
 
     override fun init(app: Application) {
-        AppEventsLogger.activateApp(app)
+        VKSdk.initialize(app)
     }
 }

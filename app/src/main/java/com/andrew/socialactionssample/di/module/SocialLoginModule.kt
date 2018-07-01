@@ -1,14 +1,14 @@
 package com.andrew.socialactionssample.di.module
 
 import android.support.v7.app.AppCompatActivity
-import com.andrew.social.login.base.SocialType
-import com.andrew.social.login.base.action.SocialLoginAction
-import com.andrew.social.login.base.action.SocialLoginManager
+import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.action.SocialLoginAction
+import com.andrew.social.login.core.action.SocialLoginManager
 import com.andrew.social.login.facebook.FacebookLoginActionImpl
 import com.andrew.social.login.google.GoogleLoginActionImpl
 import com.andrew.social.login.instagram.InstagramLoginActionImpl
 import com.andrew.social.login.twitter.TwitterLoginActionImpl
-import com.andrew.social.login.vk.VkLoginActionImpl
+import com.andrew.social.login.vkontakte.VkontakteLoginActionImpl
 import com.andrew.socialactionssample.R
 import com.andrew.socialactionssample.di.qualifier.SocialKey
 import dagger.Module
@@ -24,8 +24,8 @@ class SocialLoginModule {
 
     @Provides
     @IntoMap
-    @SocialKey(SocialType.VK)
-    fun provideVkSocialAction(activity: AppCompatActivity): SocialLoginAction = VkLoginActionImpl(activity)
+    @SocialKey(SocialType.VKONTAKTE)
+    fun provideVkSocialAction(activity: AppCompatActivity): SocialLoginAction = VkontakteLoginActionImpl(activity)
 
     @Provides
     @IntoMap

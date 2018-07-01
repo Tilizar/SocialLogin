@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SimpleItemAnimator
-import com.andrew.social.login.base.SocialType
-import com.andrew.social.login.base.action.SocialLoginManager
+import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.action.SocialLoginManager
 import com.andrew.socialactionssample.R
 import com.andrew.socialactionssample.presentation.feature.base.view.BaseActivity
 import com.andrew.socialactionssample.presentation.feature.base.view.Layout

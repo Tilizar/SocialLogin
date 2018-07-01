@@ -1,11 +1,11 @@
 package com.andrew.socialactionssample.di.module
 
-import com.andrew.social.login.base.SocialType
-import com.andrew.social.login.base.initializer.Initializer
-import com.andrew.social.login.base.initializer.SocialLoginInitializer
+import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.initializer.Initializer
+import com.andrew.social.login.core.initializer.SocialLoginInitializer
 import com.andrew.social.login.facebook.initializer.FacebookInitializer
 import com.andrew.social.login.twitter.initializer.TwitterInitializer
-import com.andrew.social.login.vk.initializer.VkInitializer
+import com.andrew.social.login.vkontakte.initializer.VkontakteInitializer
 import com.andrew.socialactionssample.di.qualifier.SocialKey
 import dagger.Module
 import dagger.Provides
@@ -25,8 +25,8 @@ class SocialInitModule {
 
     @Provides
     @IntoMap
-    @SocialKey(SocialType.VK)
-    fun provideVkInitializer(): Initializer = VkInitializer()
+    @SocialKey(SocialType.VKONTAKTE)
+    fun provideVkInitializer(): Initializer = VkontakteInitializer()
 
     @Provides
     @IntoMap

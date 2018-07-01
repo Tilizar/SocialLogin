@@ -2,8 +2,8 @@ package com.andrew.social.login.google
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
-import com.andrew.social.login.base.SocialType
-import com.andrew.social.login.base.action.SocialLoginAction
+import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.google.exception.PlayServicesNotInstalledException
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions

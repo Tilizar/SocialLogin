@@ -1,8 +1,8 @@
 package com.andrew.socialactionssample.presentation.viewModels
 
 import android.support.annotation.DrawableRes
+import com.andrew.social.login.core.SocialType
 import com.andrew.socialactionssample.R
-import com.andrew.social.login.base.SocialType
 
 /**
  * Created by Andrew on 17.06.2018.
@@ -15,7 +15,7 @@ data class SocialModel(var socialType: SocialType,
 
 enum class SocialViewType(var socialType: SocialType,
                           @DrawableRes var drawableRes: Int) {
-    VK(SocialType.VK, R.drawable.logo_vk),
+    VK(SocialType.VKONTAKTE, R.drawable.logo_vk),
     TWITTER(SocialType.TWITTER, R.drawable.logo_twitter),
     INSTAGRAM(SocialType.INSTAGRAM, R.drawable.logo_instagram),
     FACEBOOK(SocialType.FACEBOOK, R.drawable.logo_facebook),

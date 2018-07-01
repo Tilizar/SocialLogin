@@ -1,6 +1,6 @@
 package com.andrew.socialactionssample.di.qualifier
 
-import com.andrew.social.login.base.SocialType
+import com.andrew.social.login.core.SocialType
 import dagger.MapKey
 
 /**

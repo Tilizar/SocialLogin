@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.webkit.CookieManager
-import com.andrew.social.login.base.SocialType
-import com.andrew.social.login.base.action.SocialLoginAction
+import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.instagram.misc.*
 import com.andrew.social.login.instagram.view.InstagramLoginActivity
 

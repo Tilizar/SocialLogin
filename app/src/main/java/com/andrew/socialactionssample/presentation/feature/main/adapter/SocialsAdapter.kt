@@ -3,10 +3,10 @@ package com.andrew.socialactionssample.presentation.feature.main.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.andrew.social.login.core.SocialType
 import com.andrew.socialactionssample.R
 import com.andrew.socialactionssample.presentation.viewModels.SocialModel
 import com.andrew.socialactionssample.utils.inflate
-import com.andrew.social.login.base.SocialType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -25,7 +25,7 @@ class SocialsAdapter(private var socialsClick: SocialClickListener) :
     }
 
     private val socials: List<SocialModel> = arrayListOf(
-            SocialModel(SocialType.VK),
+            SocialModel(SocialType.VKONTAKTE),
             SocialModel(SocialType.TWITTER),
             SocialModel(SocialType.INSTAGRAM),
             SocialModel(SocialType.FACEBOOK),

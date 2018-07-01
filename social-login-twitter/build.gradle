@@ -17,7 +17,7 @@ android {
 }
 
 dependencies {
-    implementation project(':social-login-base')
+    implementation project(':social-login-core')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.50'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.16'

@@ -3,7 +3,7 @@ package com.andrew.socialactionssample
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.andrew.socialactionssample.di.DaggerApplicationComponent
-import com.andrew.social.login.base.initializer.SocialLoginInitializer
+import com.andrew.social.login.core.initializer.SocialLoginInitializer
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import javax.inject.Inject

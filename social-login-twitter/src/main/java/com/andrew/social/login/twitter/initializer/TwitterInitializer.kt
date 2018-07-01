@@ -1,7 +1,7 @@
 package com.andrew.social.login.twitter.initializer
 
 import android.app.Application
-import com.andrew.social.login.base.initializer.Initializer
+import com.andrew.social.login.core.initializer.Initializer
 import com.twitter.sdk.android.core.Twitter
 
 /**
