@@ -1,7 +1,7 @@
 package com.andrew.socialactionssample.presentation.feature.main.presenter
 
-import com.andrew.socialactionssample.data.social.SocialLoginManager
-import com.andrew.socialactionssample.data.social.SocialType
+import com.andrew.social.login.base.SocialType
+import com.andrew.social.login.base.action.SocialLoginManager
 import com.andrew.socialactionssample.di.PerActivity
 import com.andrew.socialactionssample.presentation.feature.main.view.MainView
 import com.arellomobile.mvp.InjectViewState

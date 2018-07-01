@@ -3,6 +3,7 @@ package com.andrew.socialactionssample.di
 import com.andrew.socialactionssample.SocialActionsApp
 import com.andrew.socialactionssample.di.module.AppModule
 import com.andrew.socialactionssample.di.module.BuilderModule
+import com.andrew.socialactionssample.di.module.SocialInitModule
 import dagger.Component
 import dagger.android.AndroidInjector
 
@@ -13,7 +14,8 @@ import dagger.android.AndroidInjector
 @PerApplication
 @Component(modules = [
     AppModule::class,
-    BuilderModule::class
+    BuilderModule::class,
+    SocialInitModule::class
 ])
 interface ApplicationComponent : AndroidInjector<SocialActionsApp> {
 

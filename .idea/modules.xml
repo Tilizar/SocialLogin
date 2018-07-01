@@ -4,6 +4,12 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SocialActionsSample.iml" filepath="$PROJECT_DIR$/.idea/SocialActionsSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-base/social-login-base.iml" filepath="$PROJECT_DIR$/social-login-base/social-login-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-facebook/social-login-facebook.iml" filepath="$PROJECT_DIR$/social-login-facebook/social-login-facebook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-google/social-login-google.iml" filepath="$PROJECT_DIR$/social-login-google/social-login-google.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-instagram/social-login-instagram.iml" filepath="$PROJECT_DIR$/social-login-instagram/social-login-instagram.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-twitter/social-login-twitter.iml" filepath="$PROJECT_DIR$/social-login-twitter/social-login-twitter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-vk/social-login-vk.iml" filepath="$PROJECT_DIR$/social-login-vk/social-login-vk.iml" />
     </modules>
   </component>
 </project>

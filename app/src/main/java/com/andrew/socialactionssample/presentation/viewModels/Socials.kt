@@ -2,7 +2,7 @@ package com.andrew.socialactionssample.presentation.viewModels
 
 import android.support.annotation.DrawableRes
 import com.andrew.socialactionssample.R
-import com.andrew.socialactionssample.data.social.SocialType
+import com.andrew.social.login.base.SocialType
 
 /**
  * Created by Andrew on 17.06.2018.

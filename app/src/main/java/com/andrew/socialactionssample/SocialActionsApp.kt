@@ -3,11 +3,10 @@ package com.andrew.socialactionssample
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.andrew.socialactionssample.di.DaggerApplicationComponent
-import com.facebook.appevents.AppEventsLogger
-import com.twitter.sdk.android.core.Twitter
-import com.vk.sdk.VKSdk
+import com.andrew.social.login.base.initializer.SocialLoginInitializer
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
+import javax.inject.Inject
 
 
 /**
@@ -16,6 +15,9 @@ import dagger.android.support.DaggerApplication
 
 class SocialActionsApp : DaggerApplication() {
 
+    @Inject
+    lateinit var socialInit: SocialLoginInitializer
+
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(this)
@@ -23,9 +25,7 @@ class SocialActionsApp : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        VKSdk.initialize(this)
-        Twitter.initialize(this)
-        AppEventsLogger.activateApp(this)
+        socialInit.initAll(this)
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> =

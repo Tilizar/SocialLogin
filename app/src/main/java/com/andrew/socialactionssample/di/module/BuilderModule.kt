@@ -15,6 +15,6 @@ import dagger.android.support.AndroidSupportInjectionModule
 interface BuilderModule {
 
     @PerActivity
-    @ContributesAndroidInjector(modules = [MainActivityModule::class, SocialModule::class])
+    @ContributesAndroidInjector(modules = [MainActivityModule::class, SocialLoginModule::class])
     fun provideMainActivity(): MainActivity
 }

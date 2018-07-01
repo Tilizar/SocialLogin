@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':social-login-base', ':social-login-facebook', ':social-login-google', ':social-login-instagram', ':social-login-twitter', ':social-login-vk'

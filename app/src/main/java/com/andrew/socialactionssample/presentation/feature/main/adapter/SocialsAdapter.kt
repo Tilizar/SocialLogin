@@ -4,9 +4,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.andrew.socialactionssample.R
-import com.andrew.socialactionssample.data.social.SocialType
 import com.andrew.socialactionssample.presentation.viewModels.SocialModel
 import com.andrew.socialactionssample.utils.inflate
+import com.andrew.social.login.base.SocialType
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
