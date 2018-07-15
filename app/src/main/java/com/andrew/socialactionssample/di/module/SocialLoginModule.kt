@@ -7,6 +7,7 @@ import com.andrew.social.login.core.action.SocialLoginManager
 import com.andrew.social.login.facebook.FacebookLoginActionImpl
 import com.andrew.social.login.google.GoogleLoginActionImpl
 import com.andrew.social.login.instagram.InstagramLoginActionImpl
+import com.andrew.social.login.linkedin.LinkedInLoginActionImpl
 import com.andrew.social.login.twitter.TwitterLoginActionImpl
 import com.andrew.social.login.vkontakte.VkontakteLoginActionImpl
 import com.andrew.socialactionssample.R
@@ -47,6 +48,11 @@ class SocialLoginModule {
     @IntoMap
     @SocialKey(SocialType.GOOGLE)
     fun provideGooglePlusSocialAction(activity: AppCompatActivity): SocialLoginAction = GoogleLoginActionImpl(activity)
+
+    @Provides
+    @IntoMap
+    @SocialKey(SocialType.LINKED_IN)
+    fun provideLinkedInSocialAction(activity: AppCompatActivity): SocialLoginAction = LinkedInLoginActionImpl(activity, activity.getString(R.string.linked_in_client_id), activity.getString(R.string.linked_in_redirect_url))
 
     @Provides
     fun provideSocialLoginManager(socialLoginActions: Map<SocialType, @JvmSuppressWildcards SocialLoginAction>) =

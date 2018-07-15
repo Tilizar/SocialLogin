@@ -18,7 +18,8 @@ enum class SocialViewType(var socialType: SocialType,
     TWITTER(SocialType.TWITTER, R.drawable.logo_twitter),
     INSTAGRAM(SocialType.INSTAGRAM, R.drawable.logo_instagram),
     FACEBOOK(SocialType.FACEBOOK, R.drawable.logo_facebook),
-    GOOGLE(SocialType.GOOGLE, R.drawable.logo_google);
+    GOOGLE(SocialType.GOOGLE, R.drawable.logo_google),
+    LINKED_IN(SocialType.LINKED_IN, R.drawable.logo_linked_in);
 
     companion object {
         fun getSocialViewType(socialType: SocialType) = values().firstOrNull { it.socialType == socialType }

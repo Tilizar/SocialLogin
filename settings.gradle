@@ -1,1 +1,8 @@
-include ':app', ':social-login-core', ':social-login-facebook', ':social-login-google', ':social-login-instagram', ':social-login-twitter', ':social-login-vkontakte'
+include ':app',
+        ':social-login-core',
+        ':social-login-facebook',
+        ':social-login-google',
+        ':social-login-instagram',
+        ':social-login-twitter',
+        ':social-login-vkontakte',
+        ':social-login-linkedin'

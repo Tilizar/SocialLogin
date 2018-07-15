@@ -22,7 +22,7 @@ class InstagramLoginActionImpl(activity: AppCompatActivity,
                                private var scope: String = "") : SocialLoginAction(activity) {
 
     companion object {
-        private const val INSTAGRAM_REQUEST_CODE = 7373
+        private const val INSTAGRAM_REQUEST_CODE = 12321
     }
 
     override fun login() {
