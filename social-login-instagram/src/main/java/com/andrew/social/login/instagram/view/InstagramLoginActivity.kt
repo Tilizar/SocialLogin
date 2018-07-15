@@ -18,9 +18,6 @@ import com.andrew.social.login.instagram.exception.InstagramGetTokenException
 import com.andrew.social.login.instagram.misc.ACCESS_TOKEN
 import com.andrew.social.login.instagram.misc.EQUAL
 import com.andrew.social.login.instagram.misc.ERROR
-import com.andrew.social.login.instagram.misc.InstagramResponse
-import com.andrew.social.login.instagram.request.InstagramGetUserRequest
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_instagram_login.*
 
@@ -33,16 +30,12 @@ class InstagramLoginActivity : AppCompatActivity() {
     companion object {
         internal const val BUNDLE_AUTH_URL = "BUNDLE_AUTH_URL"
         internal const val BUNDLE_REDIRECT_URL = "BUNDLE_REDIRECT_URL"
-        internal const val BUNDLE_RESPONSE = "BUNDLE_RESPONSE"
+        internal const val BUNDLE_TOKEN = "BUNDLE_TOKEN"
         internal const val BUNDLE_EXCEPTION = "BUNDLE_EXCEPTION"
     }
 
-    private val request = InstagramGetUserRequest()
-
     private var authUrl = ""
     private var redirectUrl = ""
-
-    private var token = ""
 
     private var getUserDisposable: Disposable? = null
 
@@ -76,8 +69,8 @@ class InstagramLoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun finishWithSuccess(token: String, userName: String) {
-        setResult(Activity.RESULT_OK, Intent().apply { putExtra(BUNDLE_RESPONSE, InstagramResponse(token, userName)) })
+    private fun finishWithSuccess(token: String) {
+        setResult(Activity.RESULT_OK, Intent().apply { putExtra(BUNDLE_TOKEN, token) })
         finish()
     }
 
@@ -126,10 +119,7 @@ class InstagramLoginActivity : AppCompatActivity() {
             if (url.contains(ACCESS_TOKEN)) {
                 val tokenArray = url.split(EQUAL.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 if (tokenArray.size > 1) {
-                    token = tokenArray[1]
-                    getUserDisposable = this@InstagramLoginActivity.request.getUser(token)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({ finishWithSuccess(token, it) }, { finishWithError(it) })
+                    finishWithSuccess(tokenArray[1])
                 } else {
                     finishWithError(InstagramGetTokenException())
                 }

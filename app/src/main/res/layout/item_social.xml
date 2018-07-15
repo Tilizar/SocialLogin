@@ -23,29 +23,17 @@
             tools:src="@drawable/logo_vk" />
 
         <TextView
-            android:id="@+id/text_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/image_social"
-            app:layout_constraintTop_toTopOf="@+id/image_social"
-            tools:text="Имя Фамилия" />
-
-        <TextView
             android:id="@+id/text_token"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="80dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="@+id/image_social"
             app:layout_constraintStart_toEndOf="@+id/image_social"
+            app:layout_constraintTop_toTopOf="@+id/image_social"
             tools:text="Токен1231231231231231212312312123123123123123123" />
 
         <Button

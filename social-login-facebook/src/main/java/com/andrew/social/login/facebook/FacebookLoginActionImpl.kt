@@ -2,26 +2,20 @@ package com.andrew.social.login.facebook
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
-import com.andrew.social.login.facebook.callback.FacebookLoginCallback
-import com.andrew.social.login.facebook.callback.FacebookProfileCallback
-import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.action.SocialLoginAction
+import com.andrew.social.login.facebook.callback.FacebookLoginCallback
 import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.BiFunction
 
 /**
  * Created by Andrew on 24.06.2018
  */
 
-class FacebookLoginActionImpl(activity: AppCompatActivity) : SocialLoginAction(activity) {
-
-    companion object {
-        internal const val profilePermission = "public_profile"
-    }
+class FacebookLoginActionImpl(activity: AppCompatActivity,
+                              private val readPermissions: List<String>) : SocialLoginAction(activity) {
 
     private val callbackManager = CallbackManager.Factory.create()
     private val loginCallback = FacebookLoginCallback()
@@ -33,7 +27,7 @@ class FacebookLoginActionImpl(activity: AppCompatActivity) : SocialLoginAction(a
     }
 
     override fun login() {
-        LoginManager.getInstance().logInWithReadPermissions(activity, arrayListOf(profilePermission))
+        LoginManager.getInstance().logInWithReadPermissions(activity, readPermissions)
     }
 
     override fun logout() {
@@ -42,12 +36,10 @@ class FacebookLoginActionImpl(activity: AppCompatActivity) : SocialLoginAction(a
 
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         loginCallback.recreate()
-        val profileCallback = FacebookProfileCallback()
         if (!callbackManager.onActivityResult(requestCode, resultCode, intent)) return
-        disposable = Single.zip(loginCallback.observe(), profileCallback.observe(),
-                BiFunction { token: String, name: String -> Pair(token, name) })
+        disposable = loginCallback.observe()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ callback?.onSuccess(SocialType.FACEBOOK, it.first, it.second) },
+                .subscribe({ callback?.onSuccess(SocialType.FACEBOOK, it) },
                         { callback?.onError(it) })
     }
 

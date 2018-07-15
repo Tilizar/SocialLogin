@@ -2,8 +2,8 @@ package com.andrew.social.login.twitter
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
-import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.twitter.callback.TwitterLoginCallback
 import com.twitter.sdk.android.core.TwitterAuthConfig
 import com.twitter.sdk.android.core.TwitterCore
@@ -37,7 +37,7 @@ class TwitterLoginActionImpl(activity: AppCompatActivity) : SocialLoginAction(ac
         loginCallback?.let {
             disposable = it.observe()
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ callback?.onSuccess(SocialType.TWITTER, it.data.authToken.token, it.data.userName) },
+                    .subscribe({ callback?.onSuccess(SocialType.TWITTER, it.data.authToken.token) },
                             { callback?.onError(it) })
         }
     }

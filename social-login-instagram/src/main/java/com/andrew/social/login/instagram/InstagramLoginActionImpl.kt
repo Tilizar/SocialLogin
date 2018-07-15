@@ -52,8 +52,8 @@ class InstagramLoginActionImpl(activity: AppCompatActivity,
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         if (requestCode != INSTAGRAM_REQUEST_CODE) return
         if (resultCode == Activity.RESULT_OK) {
-            val response = intent?.extras?.getParcelable<InstagramResponse>(InstagramLoginActivity.BUNDLE_RESPONSE)
-            response?.let { callback?.onSuccess(SocialType.INSTAGRAM, it.token, it.userName) }
+            val response = intent?.extras?.getString(InstagramLoginActivity.BUNDLE_TOKEN)
+            response?.let { callback?.onSuccess(SocialType.INSTAGRAM, it) }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             val response = intent?.extras?.getSerializable(InstagramLoginActivity.BUNDLE_EXCEPTION)
             response?.let { callback?.onError(it as Exception) }

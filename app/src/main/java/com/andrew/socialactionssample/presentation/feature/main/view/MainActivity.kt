@@ -55,8 +55,8 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
         loginManager.handleResult(requestCode, resultCode, data)
     }
 
-    override fun updateToken(socialType: SocialType, token: String, info: String) {
-        adapter.updateSocial(socialType, token, info)
+    override fun updateToken(socialType: SocialType, token: String) {
+        adapter.updateSocial(socialType, token)
     }
 
     override fun loginClick(socialType: SocialType) {
@@ -65,7 +65,7 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
 
     override fun logoutClick(socialType: SocialType) {
         loginManager.logout(socialType)
-        adapter.updateSocial(socialType, "", "")
+        adapter.updateSocial(socialType, "")
     }
 
     private fun setupRecycler() {

@@ -51,15 +51,13 @@ class GoogleLoginActionImpl(activity: AppCompatActivity,
         val result = Auth.GoogleSignInApi.getSignInResultFromIntent(intent)
         if (result.isSuccess) {
             result.signInAccount?.let {
-                callback?.onSuccess(SocialType.GOOGLE,
-                        it.idToken ?: it.id ?: "",
-                        it.displayName ?: "")
+                callback?.onSuccess(SocialType.GOOGLE, it.idToken ?: it.id ?: "")
             }
         }
     }
 
     override fun cancelRequest() {
-
+        googleApi?.disconnect()
     }
 
     private fun initGoogleApiClient() {

@@ -41,7 +41,7 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.FACEBOOK)
-    fun provideFacebookSocialAction(activity: AppCompatActivity): SocialLoginAction = FacebookLoginActionImpl(activity)
+    fun provideFacebookSocialAction(activity: AppCompatActivity): SocialLoginAction = FacebookLoginActionImpl(activity, arrayListOf("public_profile"))
 
     @Provides
     @IntoMap

@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
  * Created by Andrew on 16.06.2018.
  */
 
-abstract class SocialLoginAction(var activity: AppCompatActivity) {
+abstract class SocialLoginAction(val activity: AppCompatActivity) {
 
     var callback: SocialLoginManager.LoginCallback? = null
 

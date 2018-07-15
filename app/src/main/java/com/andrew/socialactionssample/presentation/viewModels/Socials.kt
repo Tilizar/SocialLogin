@@ -10,7 +10,6 @@ import com.andrew.socialactionssample.R
 
 data class SocialModel(var socialType: SocialType,
                        var socialViewType: SocialViewType? = SocialViewType.getSocialViewType(socialType),
-                       var info: String = "",
                        var token: String = "")
 
 enum class SocialViewType(var socialType: SocialType,
