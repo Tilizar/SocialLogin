@@ -55,8 +55,8 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
         loginManager.handleResult(requestCode, resultCode, data)
     }
 
-    override fun updateToken(socialType: SocialType, token: String) {
-        adapter.updateSocial(socialType, token)
+    override fun updateToken(socialType: SocialType, code: String) {
+        adapter.updateSocial(socialType, code)
     }
 
     override fun loginClick(socialType: SocialType) {

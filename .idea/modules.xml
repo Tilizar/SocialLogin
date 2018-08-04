@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SocialActionsSample.iml" filepath="$PROJECT_DIR$/.idea/SocialActionsSample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SocialActionsSample.iml" filepath="$PROJECT_DIR$/SocialActionsSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/social-login-core/social-login-core.iml" filepath="$PROJECT_DIR$/social-login-core/social-login-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/social-login-facebook/social-login-facebook.iml" filepath="$PROJECT_DIR$/social-login-facebook/social-login-facebook.iml" />

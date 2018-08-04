@@ -23,7 +23,7 @@
             tools:src="@drawable/logo_vk" />
 
         <TextView
-            android:id="@+id/text_token"
+            android:id="@+id/text_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"

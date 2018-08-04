@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
-import com.andrew.social.login.google.exception.PlayServicesNotInstalledException
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
@@ -16,7 +15,7 @@ import com.google.android.gms.common.api.GoogleApiClient
  */
 
 class GoogleLoginActionImpl(activity: AppCompatActivity,
-                            private val clientId: String? = null) : SocialLoginAction(activity) {
+                            private val clientId: String) : SocialLoginAction(activity) {
 
     companion object {
         private const val REQUEST_CODE_GOOGLE = 23432
@@ -51,7 +50,7 @@ class GoogleLoginActionImpl(activity: AppCompatActivity,
         val result = Auth.GoogleSignInApi.getSignInResultFromIntent(intent)
         if (result.isSuccess) {
             result.signInAccount?.let {
-                callback?.onSuccess(SocialType.GOOGLE, it.idToken ?: it.id ?: "")
+                callback?.onSuccess(SocialType.GOOGLE, it.serverAuthCode ?: "")
             }
         }
     }
@@ -65,12 +64,8 @@ class GoogleLoginActionImpl(activity: AppCompatActivity,
 
         val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestProfile()
-
-        if (clientId != null) {
-            options.requestIdToken(clientId)
-        } else {
-            options.requestId()
-        }
+                .requestIdToken(clientId)
+                .requestServerAuthCode(clientId)
 
         googleApi = GoogleApiClient.Builder(activity)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, options.build())

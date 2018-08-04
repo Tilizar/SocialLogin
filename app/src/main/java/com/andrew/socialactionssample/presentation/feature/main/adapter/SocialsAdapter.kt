@@ -41,11 +41,11 @@ class SocialsAdapter(private var socialsClick: SocialClickListener) :
         holder.bind(socials[position])
     }
 
-    fun updateSocial(socialType: SocialType, token: String) {
+    fun updateSocial(socialType: SocialType, code: String) {
         socials.forEach {
             if (it.socialType == socialType) {
                 val pos = socials.indexOf(it)
-                it.token = token
+                it.code = code
                 notifyItemChanged(pos)
             }
         }
@@ -59,7 +59,7 @@ class SocialsAdapter(private var socialsClick: SocialClickListener) :
                     .apply(RequestOptions().circleCrop()
                             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                     .into(itemView.image_social)
-            itemView.text_token.text = social.token
+            itemView.text_code.text = social.code
             itemView.button_login.setOnClickListener { socialsClick.loginClick(social.socialType) }
             itemView.button_logout.setOnClickListener { socialsClick.logoutClick(social.socialType) }
         }

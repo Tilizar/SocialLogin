@@ -26,7 +26,7 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.VKONTAKTE)
-    fun provideVkSocialAction(activity: AppCompatActivity): SocialLoginAction = VkontakteLoginActionImpl(activity)
+    fun provideVkSocialAction(activity: AppCompatActivity): SocialLoginAction = VkontakteLoginActionImpl(activity, activity.getString(R.string.com_vk_sdk_AppId), "http://placeholder.com")
 
     @Provides
     @IntoMap
@@ -42,12 +42,15 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.FACEBOOK)
-    fun provideFacebookSocialAction(activity: AppCompatActivity): SocialLoginAction = FacebookLoginActionImpl(activity, arrayListOf("public_profile"))
+    fun provideFacebookSocialAction(activity: AppCompatActivity): SocialLoginAction =
+            FacebookLoginActionImpl(activity, activity.getString(R.string.facebook_app_id),
+                    activity.getString(R.string.facebook_redirect_url))
 
     @Provides
     @IntoMap
     @SocialKey(SocialType.GOOGLE)
-    fun provideGooglePlusSocialAction(activity: AppCompatActivity): SocialLoginAction = GoogleLoginActionImpl(activity)
+    fun provideGooglePlusSocialAction(activity: AppCompatActivity): SocialLoginAction =
+            GoogleLoginActionImpl(activity, activity.getString(R.string.google_client_id))
 
     @Provides
     @IntoMap

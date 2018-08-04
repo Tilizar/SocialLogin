@@ -1,42 +1,58 @@
 package com.andrew.social.login.vkontakte
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
-import com.andrew.social.login.vkontakte.callback.VkontakteTokenCallback
-import com.vk.sdk.VKSdk
-import com.vk.sdk.VKServiceActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import com.andrew.social.login.core.view.WebViewLoginActivity
 
 /**
  * Created by Andrew on 16.06.2018.
  */
 
-class VkontakteLoginActionImpl(activity: AppCompatActivity) : SocialLoginAction(activity) {
+class VkontakteLoginActionImpl(activity: AppCompatActivity,
+                               clientId: String,
+                               redirectUrl: String,
+                               scope: String = "") : SocialLoginAction(activity) {
 
-    private var loginDisposable: Disposable? = null
+    companion object {
+        private const val VKONTAKTE_REQUEST_CODE = 45654
+    }
+
+    private var url = "https://oauth.vk.com/authorize?" +
+            "response_type=code" +
+            "&client_id=$clientId" +
+            "&redirect_uri=$redirectUrl"
+
+    init {
+        if (!TextUtils.isEmpty(scope)) {
+            url += "&scope=$scope"
+        }
+    }
 
     override fun login() {
-        VKSdk.login(activity)
+        WebViewLoginActivity.openLoginActivity(activity, VKONTAKTE_REQUEST_CODE, SocialType.VKONTAKTE, url)
     }
 
     override fun logout() {
-        VKSdk.logout()
+
     }
 
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
-        if (requestCode != VKServiceActivity.VKServiceType.Authorization.outerCode) return
-        val tokenCallback = VkontakteTokenCallback()
-        VKSdk.onActivityResult(requestCode, resultCode, intent, tokenCallback)
-        loginDisposable = tokenCallback.observe()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ callback?.onSuccess(SocialType.VKONTAKTE, it.accessToken) },
-                        { callback?.onError(it) })
+        if (requestCode != VKONTAKTE_REQUEST_CODE) return
+
+        if (resultCode == Activity.RESULT_OK) {
+            val response = intent?.extras?.getString(WebViewLoginActivity.BUNDLE_CODE)
+            response?.let { callback?.onSuccess(SocialType.VKONTAKTE, it) }
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            val response = intent?.extras?.getSerializable(WebViewLoginActivity.BUNDLE_EXCEPTION)
+            response?.let { callback?.onError(it as Exception) }
+        }
     }
 
     override fun cancelRequest() {
-        loginDisposable = null
+
     }
 }

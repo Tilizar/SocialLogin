@@ -3,9 +3,7 @@ package com.andrew.socialactionssample.di.module
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.initializer.Initializer
 import com.andrew.social.login.core.initializer.SocialLoginInitializer
-import com.andrew.social.login.facebook.initializer.FacebookInitializer
-import com.andrew.social.login.twitter.initializer.TwitterInitializer
-import com.andrew.social.login.vkontakte.initializer.VkontakteInitializer
+import com.andrew.social.login.twitter.TwitterInitializer
 import com.andrew.socialactionssample.di.qualifier.SocialKey
 import dagger.Module
 import dagger.Provides
@@ -17,16 +15,6 @@ import dagger.multibindings.IntoMap
 
 @Module
 class SocialInitModule {
-
-    @Provides
-    @IntoMap
-    @SocialKey(SocialType.FACEBOOK)
-    fun provideFacebookInitializer(): Initializer = FacebookInitializer()
-
-    @Provides
-    @IntoMap
-    @SocialKey(SocialType.VKONTAKTE)
-    fun provideVkInitializer(): Initializer = VkontakteInitializer()
 
     @Provides
     @IntoMap
