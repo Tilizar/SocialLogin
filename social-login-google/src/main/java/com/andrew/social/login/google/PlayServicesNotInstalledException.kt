@@ -1,4 +1,4 @@
-package com.andrew.social.login.google.exception
+package com.andrew.social.login.google
 
 /**
  * Created by Andrew on 28.06.2018

@@ -10,7 +10,7 @@ import com.andrew.social.login.core.SocialType
 class SocialLoginManager(private val socialLoginActions: Map<SocialType, SocialLoginAction>) {
 
     interface LoginCallback {
-        fun onSuccess(socialType: SocialType, token: String)
+        fun onSuccess(socialType: SocialType, code: String)
         fun onError(error: Throwable)
     }
 

@@ -8,5 +8,5 @@ import com.andrew.socialactionssample.presentation.feature.base.view.BaseView
  */
 
 interface MainView : BaseView {
-    fun updateToken(socialType: SocialType, token: String)
+    fun updateToken(socialType: SocialType, code: String)
 }

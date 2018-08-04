@@ -1,16 +1,16 @@
-package com.andrew.social.login.vkontakte.initializer
+package com.andrew.social.login.twitter
 
 import android.app.Application
 import com.andrew.social.login.core.initializer.Initializer
-import com.vk.sdk.VKSdk
+import com.twitter.sdk.android.core.Twitter
 
 /**
  * Created by Andrew on 01.07.2018
  */
 
-class VkontakteInitializer : Initializer {
+class TwitterInitializer : Initializer {
 
     override fun init(app: Application) {
-        VKSdk.initialize(app)
+        Twitter.initialize(app)
     }
 }

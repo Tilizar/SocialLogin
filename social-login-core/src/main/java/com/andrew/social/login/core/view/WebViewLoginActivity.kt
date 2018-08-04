@@ -1,9 +1,10 @@
-package com.andrew.social.login.instagram.view
+package com.andrew.social.login.core.view
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
@@ -13,36 +14,41 @@ import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.andrew.social.login.instagram.R
-import com.andrew.social.login.instagram.exception.InstagramGetTokenException
-import com.andrew.social.login.instagram.misc.ACCESS_TOKEN
-import com.andrew.social.login.instagram.misc.EQUAL
-import com.andrew.social.login.instagram.misc.ERROR
-import kotlinx.android.synthetic.main.activity_instagram_login.*
+import com.andrew.social.login.core.R
+import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.exception.LoginException
+import kotlinx.android.synthetic.main.activity_webview_login.*
 
 /**
- * Created by Andrew on 24.06.2018
+ * Created by Andrew on 16.07.2018
  */
 
-class InstagramLoginActivity : AppCompatActivity() {
+class WebViewLoginActivity : AppCompatActivity() {
 
     companion object {
-        internal const val BUNDLE_AUTH_URL = "BUNDLE_AUTH_URL"
-        internal const val BUNDLE_REDIRECT_URL = "BUNDLE_REDIRECT_URL"
-        internal const val BUNDLE_TOKEN = "BUNDLE_TOKEN"
-        internal const val BUNDLE_EXCEPTION = "BUNDLE_EXCEPTION"
-    }
+        private const val BUNDLE_SOCIAL = "BUNDLE_SOCIAL"
+        private const val BUNDLE_URL = "BUNDLE_URL"
 
-    private var authUrl = ""
-    private var redirectUrl = ""
+        const val BUNDLE_CODE = "BUNDLE_CODE"
+        const val BUNDLE_EXCEPTION = "BUNDLE_EXCEPTION"
+
+        private const val QUERY_PARAMETER_CODE = "code"
+
+        @JvmStatic
+        fun openLoginActivity(activity: AppCompatActivity,
+                              requestCode: Int,
+                              social: SocialType,
+                              url: String) {
+            activity.startActivityForResult(Intent(activity, WebViewLoginActivity::class.java).apply {
+                putExtra(BUNDLE_SOCIAL, social.name)
+                putExtra(BUNDLE_URL, url)
+            }, requestCode)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        intent.extras?.let {
-            authUrl = it.getString(BUNDLE_AUTH_URL, "")
-            redirectUrl = it.getString(BUNDLE_REDIRECT_URL, "")
-        }
-        setContentView(R.layout.activity_instagram_login)
+        setContentView(R.layout.activity_webview_login)
         setUpWebView()
     }
 
@@ -57,12 +63,12 @@ class InstagramLoginActivity : AppCompatActivity() {
                 LoginWebViewClientBelowLollipop()
             }
             settings.javaScriptEnabled = true
-            loadUrl(authUrl)
+            loadUrl(intent.extras.getString(BUNDLE_URL))
         }
     }
 
-    private fun finishWithSuccess(token: String) {
-        setResult(Activity.RESULT_OK, Intent().apply { putExtra(BUNDLE_TOKEN, token) })
+    private fun finishWithSuccess(code: String) {
+        setResult(Activity.RESULT_OK, Intent().apply { putExtra(BUNDLE_CODE, code) })
         finish()
     }
 
@@ -92,7 +98,7 @@ class InstagramLoginActivity : AppCompatActivity() {
         override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
             super.onReceivedError(view, request, error)
             progress.visibility = View.GONE
-            finishWithError(InstagramGetTokenException())
+            finishWithError(LoginException(SocialType.valueOf(intent.extras.getString(BUNDLE_SOCIAL))))
         }
 
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -106,19 +112,14 @@ class InstagramLoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleUrl(url: String): Boolean {
-        return if (url.startsWith(redirectUrl)) {
-            if (url.contains(ACCESS_TOKEN)) {
-                val tokenArray = url.split(EQUAL.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                if (tokenArray.size > 1) {
-                    finishWithSuccess(tokenArray[1])
-                } else {
-                    finishWithError(InstagramGetTokenException())
-                }
-            } else if (url.contains(ERROR)) {
-                finishWithError(InstagramGetTokenException())
-            }
+    private fun handleUrl(url: String?): Boolean {
+        val uri = Uri.parse(url)
+        return if (uri.queryParameterNames.contains(QUERY_PARAMETER_CODE)) {
+            finishWithSuccess(uri.getQueryParameter(QUERY_PARAMETER_CODE))
             true
-        } else false
+        } else {
+            webview.loadUrl(url)
+            false
+        }
     }
 }
