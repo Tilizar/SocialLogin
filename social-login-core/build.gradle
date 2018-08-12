@@ -12,15 +12,12 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51'
-}
-repositories {
-    mavenCentral()
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.60'
 }

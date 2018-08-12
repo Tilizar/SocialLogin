@@ -1,6 +1,8 @@
 package com.andrew.social.login.core.action
 
 import android.content.Intent
+import android.os.Build
+import android.webkit.CookieManager
 import com.andrew.social.login.core.SocialType
 
 /**
@@ -29,12 +31,13 @@ class SocialLoginManager(private val socialLoginActions: Map<SocialType, SocialL
         socialLoginActions[socialType]?.login()
     }
 
-    fun logout(socialType: SocialType) {
-        socialLoginActions[socialType]?.logout()
-    }
-
-    fun cancelRequest(socialType: SocialType) {
-        socialLoginActions[socialType]?.cancelRequest()
+    fun logout() {
+        socialLoginActions.forEach { it.value.logout() }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            CookieManager.getInstance().removeAllCookies(null)
+        } else {
+            CookieManager.getInstance().removeAllCookie()
+        }
     }
 
     fun handleResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -13,9 +13,9 @@ abstract class SocialLoginAction(val activity: AppCompatActivity) {
 
     abstract fun login()
 
-    abstract fun logout()
+    open fun logout() {}
 
     abstract fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?)
 
-    abstract fun cancelRequest()
+    open fun cancelRequest() {}
 }

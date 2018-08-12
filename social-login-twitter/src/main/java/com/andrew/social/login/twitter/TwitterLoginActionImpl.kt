@@ -33,11 +33,11 @@ class TwitterLoginActionImpl(activity: AppCompatActivity) : SocialLoginAction(ac
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         if (requestCode != TwitterAuthConfig.DEFAULT_AUTH_REQUEST_CODE) return
         authClient.onActivityResult(requestCode, resultCode, intent)
-        loginCallback?.let {
-            disposable = it.observe()
+        loginCallback?.let { callback ->
+            disposable = callback.observe()
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ callback?.onSuccess(SocialType.TWITTER, it.data.authToken.token) },
-                            { callback?.onError(it) })
+                    .subscribe({ this.callback?.onSuccess(SocialType.TWITTER, it.data.authToken.token) },
+                            { this.callback?.onError(it) })
         }
     }
 

@@ -17,7 +17,7 @@ class LinkedInLoginActionImpl(activity: AppCompatActivity,
                               redirectUrl: String) : SocialLoginAction(activity) {
 
     companion object {
-        const val LINKED_IN_REQUEST_CODE = 34543
+        const val LINKED_IN_REQUEST_CODE = 10004
     }
 
     private val url = "https://www.linkedin.com/oauth/v2/authorization" +
@@ -30,14 +30,6 @@ class LinkedInLoginActionImpl(activity: AppCompatActivity,
         WebViewLoginActivity.openLoginActivity(activity, LINKED_IN_REQUEST_CODE, SocialType.LINKED_IN, url)
     }
 
-    override fun logout() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            CookieManager.getInstance().removeAllCookies(null)
-        } else {
-            CookieManager.getInstance().removeAllCookie()
-        }
-    }
-
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         if (requestCode != LINKED_IN_REQUEST_CODE) return
         if (resultCode == Activity.RESULT_OK) {
@@ -47,9 +39,5 @@ class LinkedInLoginActionImpl(activity: AppCompatActivity,
             val response = intent?.extras?.getSerializable(WebViewLoginActivity.BUNDLE_EXCEPTION)
             response?.let { callback?.onError(it as Exception) }
         }
-    }
-
-    override fun cancelRequest() {
-
     }
 }

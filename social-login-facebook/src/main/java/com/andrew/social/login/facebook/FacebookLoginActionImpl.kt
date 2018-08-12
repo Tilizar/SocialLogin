@@ -16,7 +16,7 @@ class FacebookLoginActionImpl(activity: AppCompatActivity,
                               redirectUrl: String) : SocialLoginAction(activity) {
 
     companion object {
-        private const val FACEBOOK_REQUEST_CODE = 11111
+        private const val FACEBOOK_REQUEST_CODE = 10002
     }
 
     private val url = "https://www.facebook.com/v3.0/dialog/oauth?" +
@@ -26,10 +26,6 @@ class FacebookLoginActionImpl(activity: AppCompatActivity,
 
     override fun login() {
         WebViewLoginActivity.openLoginActivity(activity, FACEBOOK_REQUEST_CODE, SocialType.FACEBOOK, url)
-    }
-
-    override fun logout() {
-
     }
 
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
@@ -42,9 +38,5 @@ class FacebookLoginActionImpl(activity: AppCompatActivity,
             val response = intent?.extras?.getSerializable(WebViewLoginActivity.BUNDLE_EXCEPTION)
             response?.let { callback?.onError(it as Exception) }
         }
-    }
-
-    override fun cancelRequest() {
-
     }
 }

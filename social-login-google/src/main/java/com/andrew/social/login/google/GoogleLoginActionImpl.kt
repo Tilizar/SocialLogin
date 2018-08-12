@@ -18,7 +18,7 @@ class GoogleLoginActionImpl(activity: AppCompatActivity,
                             private val clientId: String) : SocialLoginAction(activity) {
 
     companion object {
-        private const val REQUEST_CODE_GOOGLE = 23432
+        private const val REQUEST_CODE_GOOGLE = 10003
     }
 
     private var googleApi: GoogleApiClient? = null
