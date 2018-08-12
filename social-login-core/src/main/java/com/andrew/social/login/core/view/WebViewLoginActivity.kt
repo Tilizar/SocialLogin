@@ -28,20 +28,21 @@ class WebViewLoginActivity : AppCompatActivity() {
     companion object {
         private const val BUNDLE_SOCIAL = "BUNDLE_SOCIAL"
         private const val BUNDLE_URL = "BUNDLE_URL"
+        private const val BUNDLE_QUERY_PARAM = "BUNDLE_QUERY_PARAM"
 
         const val BUNDLE_CODE = "BUNDLE_CODE"
         const val BUNDLE_EXCEPTION = "BUNDLE_EXCEPTION"
-
-        private const val QUERY_PARAMETER_CODE = "code"
 
         @JvmStatic
         fun openLoginActivity(activity: AppCompatActivity,
                               requestCode: Int,
                               social: SocialType,
-                              url: String) {
+                              url: String,
+                              queryParam: String = "code") {
             activity.startActivityForResult(Intent(activity, WebViewLoginActivity::class.java).apply {
                 putExtra(BUNDLE_SOCIAL, social.name)
                 putExtra(BUNDLE_URL, url)
+                putExtra(BUNDLE_QUERY_PARAM, queryParam)
             }, requestCode)
         }
     }
@@ -77,12 +78,14 @@ class WebViewLoginActivity : AppCompatActivity() {
         finish()
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private inner class LoginWebViewClient : CustomWebViewClient() {
         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
             request?.let {
-                val url = it.url.toString()
-                return handleUrl(url)
+                return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    handleUrl(it.url.toString())
+                } else {
+                    false
+                }
             }
             return false
         }
@@ -98,7 +101,9 @@ class WebViewLoginActivity : AppCompatActivity() {
         override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
             super.onReceivedError(view, request, error)
             progress.visibility = View.GONE
-            finishWithError(LoginException(SocialType.valueOf(intent.extras.getString(BUNDLE_SOCIAL))))
+            intent.extras?.getString(BUNDLE_SOCIAL)?.let {
+                finishWithError(LoginException(SocialType.valueOf(it)))
+            }
         }
 
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -114,8 +119,9 @@ class WebViewLoginActivity : AppCompatActivity() {
 
     private fun handleUrl(url: String?): Boolean {
         val uri = Uri.parse(url)
-        return if (uri.queryParameterNames.contains(QUERY_PARAMETER_CODE)) {
-            finishWithSuccess(uri.getQueryParameter(QUERY_PARAMETER_CODE))
+        val param = intent.extras.getString(BUNDLE_QUERY_PARAM)
+        return if (uri.queryParameterNames.contains(param)) {
+            finishWithSuccess(uri.getQueryParameter(param))
             true
         } else {
             webview.loadUrl(url)

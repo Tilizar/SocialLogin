@@ -5,6 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
+
     defaultConfig {
         applicationId "com.andrew.socialactionssample"
         minSdkVersion 21
@@ -62,4 +63,5 @@ dependencies {
     implementation project(':social-login-linkedin')
     implementation project(':social-login-twitter')
     implementation project(':social-login-vkontakte')
+    implementation project(':social-login-github')
 }

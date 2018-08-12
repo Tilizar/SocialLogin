@@ -64,7 +64,7 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
     }
 
     override fun logoutClick(socialType: SocialType) {
-        loginManager.logout(socialType)
+        loginManager.logout()
         adapter.updateSocial(socialType, "")
     }
 

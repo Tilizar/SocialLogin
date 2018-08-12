@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
+
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 27
@@ -19,5 +19,5 @@ android {
 dependencies {
     implementation project(':social-login-core')
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.60'
 }

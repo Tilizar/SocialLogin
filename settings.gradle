@@ -1,4 +1,4 @@
-include ':app',
+include ':app', ':social-login-github',
         ':social-login-core',
         ':social-login-facebook',
         ':social-login-google',

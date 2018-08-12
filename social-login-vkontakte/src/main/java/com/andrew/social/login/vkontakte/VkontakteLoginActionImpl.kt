@@ -18,7 +18,7 @@ class VkontakteLoginActionImpl(activity: AppCompatActivity,
                                scope: String = "") : SocialLoginAction(activity) {
 
     companion object {
-        private const val VKONTAKTE_REQUEST_CODE = 45654
+        private const val VKONTAKTE_REQUEST_CODE = 10000
     }
 
     private var url = "https://oauth.vk.com/authorize?" +
@@ -36,10 +36,6 @@ class VkontakteLoginActionImpl(activity: AppCompatActivity,
         WebViewLoginActivity.openLoginActivity(activity, VKONTAKTE_REQUEST_CODE, SocialType.VKONTAKTE, url)
     }
 
-    override fun logout() {
-
-    }
-
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         if (requestCode != VKONTAKTE_REQUEST_CODE) return
 
@@ -50,9 +46,5 @@ class VkontakteLoginActionImpl(activity: AppCompatActivity,
             val response = intent?.extras?.getSerializable(WebViewLoginActivity.BUNDLE_EXCEPTION)
             response?.let { callback?.onError(it as Exception) }
         }
-    }
-
-    override fun cancelRequest() {
-
     }
 }

@@ -10,5 +10,6 @@ enum class SocialType {
     INSTAGRAM,
     FACEBOOK,
     GOOGLE,
-    LINKED_IN
+    LINKED_IN,
+    GITHUB
 }

@@ -5,6 +5,7 @@ import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.core.action.SocialLoginManager
 import com.andrew.social.login.facebook.FacebookLoginActionImpl
+import com.andrew.social.login.github.GithubLoginActionImpl
 import com.andrew.social.login.google.GoogleLoginActionImpl
 import com.andrew.social.login.instagram.InstagramLoginActionImpl
 import com.andrew.social.login.linkedin.LinkedInLoginActionImpl
@@ -56,6 +57,11 @@ class SocialLoginModule {
     @IntoMap
     @SocialKey(SocialType.LINKED_IN)
     fun provideLinkedInSocialAction(activity: AppCompatActivity): SocialLoginAction = LinkedInLoginActionImpl(activity, activity.getString(R.string.linked_in_client_id), activity.getString(R.string.linked_in_redirect_url))
+
+    @Provides
+    @IntoMap
+    @SocialKey(SocialType.GITHUB)
+    fun provideGithubSocialAction(activity: AppCompatActivity): SocialLoginAction = GithubLoginActionImpl(activity, activity.getString(R.string.github_client_id), activity.getString(R.string.github_redirect_url))
 
     @Provides
     fun provideSocialLoginManager(socialLoginActions: Map<SocialType, @JvmSuppressWildcards SocialLoginAction>) =
