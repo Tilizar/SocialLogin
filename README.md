@@ -4,8 +4,8 @@ Sign in via socials
 3) - [X] Instagram
 4) - [X] Facebook
 5) - [X] Google
-6) - [ ] LinkedIn
-7) - [ ] Github
+6) - [X] LinkedIn
+7) - [X] Github
 8) - [ ] Amazon
 9) - [ ] Pinterest
 10) - [ ] SoundCloud
