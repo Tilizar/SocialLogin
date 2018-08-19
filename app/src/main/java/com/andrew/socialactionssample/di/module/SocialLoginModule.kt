@@ -1,16 +1,16 @@
 package com.andrew.socialactionssample.di.module
 
 import android.support.v7.app.AppCompatActivity
+import com.andrew.social.login.facebook.implicit.FacebookLoginActionImpl
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.core.action.SocialLoginManager
-import com.andrew.social.login.facebook.FacebookLoginActionImpl
-import com.andrew.social.login.github.GithubLoginActionImpl
-import com.andrew.social.login.google.GoogleLoginActionImpl
-import com.andrew.social.login.instagram.InstagramLoginActionImpl
+import com.andrew.social.login.github.explicit.GithubLoginActionImpl
+import com.andrew.social.login.google.explicit.GoogleLoginActionImpl
+import com.andrew.social.login.instagram.implicit.InstagramLoginActionImpl
 import com.andrew.social.login.linkedin.LinkedInLoginActionImpl
-import com.andrew.social.login.twitter.TwitterLoginActionImpl
-import com.andrew.social.login.vkontakte.VkontakteLoginActionImpl
+import com.andrew.social.login.twitter.implicit.TwitterLoginActionImpl
+import com.andrew.social.login.vkontakte.implicit.VkontakteLoginActionImpl
 import com.andrew.socialactionssample.R
 import com.andrew.socialactionssample.di.qualifier.SocialKey
 import dagger.Module
@@ -27,7 +27,8 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.VKONTAKTE)
-    fun provideVkSocialAction(activity: AppCompatActivity): SocialLoginAction = VkontakteLoginActionImpl(activity, activity.getString(R.string.com_vk_sdk_AppId), "http://placeholder.com")
+    //fun provideVkSocialAction(activity: AppCompatActivity): SocialLoginAction = VkontakteLoginActionImpl(activity, activity.getString(R.string.com_vk_sdk_AppId), "http://placeholder.com")
+    fun provideVkSocialAction(activity: AppCompatActivity): SocialLoginAction = VkontakteLoginActionImpl(activity)
 
     @Provides
     @IntoMap
@@ -43,9 +44,11 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.FACEBOOK)
+//    fun provideFacebookSocialAction(activity: AppCompatActivity): SocialLoginAction =
+//            FacebookLoginActionImpl(activity, activity.getString(R.string.facebook_app_id),
+//                    activity.getString(R.string.facebook_redirect_url))
     fun provideFacebookSocialAction(activity: AppCompatActivity): SocialLoginAction =
-            FacebookLoginActionImpl(activity, activity.getString(R.string.facebook_app_id),
-                    activity.getString(R.string.facebook_redirect_url))
+            FacebookLoginActionImpl(activity)
 
     @Provides
     @IntoMap

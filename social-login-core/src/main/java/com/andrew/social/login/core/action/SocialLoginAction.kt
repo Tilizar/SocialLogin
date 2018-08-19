@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity
 
 abstract class SocialLoginAction(val activity: AppCompatActivity) {
 
-    var callback: SocialLoginManager.LoginCallback? = null
+    var callback: SocialLoginCallback? = null
 
     abstract fun login()
 
