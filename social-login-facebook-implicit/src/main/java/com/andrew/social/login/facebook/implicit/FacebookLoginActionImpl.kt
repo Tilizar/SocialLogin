@@ -1,11 +1,11 @@
 package com.andrew.social.login.facebook.implicit
 
+import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.facebook.implicit.callback.FacebookLoginCallback
-import com.andrew.social.login.core.ResponseType
 import com.facebook.CallbackManager
 import com.facebook.login.LoginManager
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,7 +15,7 @@ import io.reactivex.disposables.Disposable
  * Created by Andrew on 24.06.2018
  */
 
-class FacebookLoginActionImpl(activity: AppCompatActivity,
+class FacebookLoginActionImpl(activity: Activity,
                               private val readPermissions: List<String> = emptyList()) : SocialLoginAction(activity) {
 
     private val callbackManager = CallbackManager.Factory.create()

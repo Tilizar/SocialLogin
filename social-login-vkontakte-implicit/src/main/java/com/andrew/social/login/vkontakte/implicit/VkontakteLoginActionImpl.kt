@@ -1,7 +1,7 @@
 package com.andrew.social.login.vkontakte.implicit
 
+import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
@@ -14,7 +14,7 @@ import io.reactivex.disposables.Disposable
  * Created by Andrew on 16.06.2018.
  */
 
-class VkontakteLoginActionImpl(activity: AppCompatActivity) : SocialLoginAction(activity) {
+class VkontakteLoginActionImpl(activity: Activity) : SocialLoginAction(activity) {
 
     private var loginDisposable: Disposable? = null
 

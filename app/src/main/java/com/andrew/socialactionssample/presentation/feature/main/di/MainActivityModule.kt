@@ -2,7 +2,7 @@ package com.andrew.socialactionssample.presentation.feature.main.di
 
 import android.support.v7.widget.LinearLayoutManager
 import com.andrew.socialactionssample.di.PerActivity
-import com.andrew.socialactionssample.presentation.feature.base.di.AppCompatActivityModule
+import com.andrew.socialactionssample.presentation.feature.base.di.ActivityModule
 import com.andrew.socialactionssample.presentation.feature.main.adapter.SocialsAdapter
 import com.andrew.socialactionssample.presentation.feature.main.view.MainActivity
 import dagger.Module
@@ -13,7 +13,7 @@ import dagger.Provides
  */
 
 @Module
-class MainActivityModule : AppCompatActivityModule<MainActivity>() {
+class MainActivityModule : ActivityModule<MainActivity>() {
 
     @PerActivity
     @Provides
