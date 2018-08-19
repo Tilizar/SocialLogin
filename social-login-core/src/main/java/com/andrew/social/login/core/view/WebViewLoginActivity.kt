@@ -7,7 +7,6 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.webkit.WebResourceError
@@ -16,7 +15,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.andrew.social.login.core.R
 import com.andrew.social.login.core.SocialType
-import com.andrew.social.login.core.exception.LoginException
+import com.andrew.social.login.core.exception.SocialLoginException
 import kotlinx.android.synthetic.main.activity_webview_login.*
 
 /**
@@ -102,7 +101,7 @@ class WebViewLoginActivity : AppCompatActivity() {
             super.onReceivedError(view, request, error)
             progress.visibility = View.GONE
             intent.extras?.getString(BUNDLE_SOCIAL)?.let {
-                finishWithError(LoginException(SocialType.valueOf(it)))
+                finishWithError(SocialLoginException(SocialType.valueOf(it)))
             }
         }
 

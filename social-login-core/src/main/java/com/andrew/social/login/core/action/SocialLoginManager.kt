@@ -11,13 +11,8 @@ import com.andrew.social.login.core.SocialType
 
 class SocialLoginManager(private val socialLoginActions: Map<SocialType, SocialLoginAction>) {
 
-    interface LoginCallback {
-        fun onSuccess(socialType: SocialType, code: String)
-        fun onError(error: Throwable)
-    }
-
-    fun observeLoginCallback(callback: LoginCallback) {
-        socialLoginActions.forEach { it.value.callback = callback }
+    fun observeLoginCallback(callbackSocial: SocialLoginCallback) {
+        socialLoginActions.forEach { it.value.callback = callbackSocial }
     }
 
     fun disposeLoginCallback() {
