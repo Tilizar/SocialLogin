@@ -1,7 +1,7 @@
 package com.andrew.social.login.google.explicit
 
+import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
@@ -16,7 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient
  * Created by Andrew on 28.06.2018
  */
 
-class GoogleLoginActionImpl(activity: AppCompatActivity,
+class GoogleLoginActionImpl(activity: Activity,
                             private val clientId: String) : SocialLoginAction(activity) {
 
     companion object {
