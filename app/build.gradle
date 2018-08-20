@@ -57,11 +57,14 @@ dependencies {
 
     //socials
     implementation project(':social-login-core')
-    implementation project(':social-login-facebook')
-    implementation project(':social-login-google')
-    implementation project(':social-login-instagram')
-    implementation project(':social-login-linkedin')
-    implementation project(':social-login-twitter')
-    implementation project(':social-login-vkontakte')
-    implementation project(':social-login-github')
+    implementation project(':social-login-facebook-explicit')
+    implementation project(':social-login-facebook-implicit')
+    implementation project(':social-login-google-explicit')
+    implementation project(':social-login-instagram-explicit')
+    implementation project(':social-login-instagram-implicit')
+    implementation project(':social-login-linkedin-explicit')
+    implementation project(':social-login-twitter-implicit')
+    implementation project(':social-login-vkontakte-explicit')
+    implementation project(':social-login-vkontakte-implicit')
+    implementation project(':social-login-github-explicit')
 }

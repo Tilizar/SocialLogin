@@ -5,13 +5,16 @@
       <module fileurl="file://$PROJECT_DIR$/SocialActionsSample.iml" filepath="$PROJECT_DIR$/SocialActionsSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/social-login-core/social-login-core.iml" filepath="$PROJECT_DIR$/social-login-core/social-login-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/social-login-facebook/social-login-facebook.iml" filepath="$PROJECT_DIR$/social-login-facebook/social-login-facebook.iml" />
-      <module fileurl="file://$PROJECT_DIR$/social-login-github/social-login-github.iml" filepath="$PROJECT_DIR$/social-login-github/social-login-github.iml" />
-      <module fileurl="file://$PROJECT_DIR$/social-login-google/social-login-google.iml" filepath="$PROJECT_DIR$/social-login-google/social-login-google.iml" />
-      <module fileurl="file://$PROJECT_DIR$/social-login-instagram/social-login-instagram.iml" filepath="$PROJECT_DIR$/social-login-instagram/social-login-instagram.iml" />
-      <module fileurl="file://$PROJECT_DIR$/social-login-linkedin/social-login-linkedin.iml" filepath="$PROJECT_DIR$/social-login-linkedin/social-login-linkedin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/social-login-twitter/social-login-twitter.iml" filepath="$PROJECT_DIR$/social-login-twitter/social-login-twitter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/social-login-vkontakte/social-login-vkontakte.iml" filepath="$PROJECT_DIR$/social-login-vkontakte/social-login-vkontakte.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-facebook-explicit/social-login-facebook-explicit.iml" filepath="$PROJECT_DIR$/social-login-facebook-explicit/social-login-facebook-explicit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-facebook-implicit/social-login-facebook-implicit.iml" filepath="$PROJECT_DIR$/social-login-facebook-implicit/social-login-facebook-implicit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-github-explicit/social-login-github-explicit.iml" filepath="$PROJECT_DIR$/social-login-github-explicit/social-login-github-explicit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-google-explicit/social-login-google-explicit.iml" filepath="$PROJECT_DIR$/social-login-google-explicit/social-login-google-explicit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-instagram-explicit/social-login-instagram-explicit.iml" filepath="$PROJECT_DIR$/social-login-instagram-explicit/social-login-instagram-explicit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-instagram-implicit/social-login-instagram-implicit.iml" filepath="$PROJECT_DIR$/social-login-instagram-implicit/social-login-instagram-implicit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-linkedin-explicit/social-login-linkedin-explicit.iml" filepath="$PROJECT_DIR$/social-login-linkedin-explicit/social-login-linkedin-explicit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-twitter-implicit/social-login-twitter-implicit.iml" filepath="$PROJECT_DIR$/social-login-twitter-implicit/social-login-twitter-implicit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-vkontakte-explicit/social-login-vkontakte-explicit.iml" filepath="$PROJECT_DIR$/social-login-vkontakte-explicit/social-login-vkontakte-explicit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-login-vkontakte-implicit/social-login-vkontakte-implicit.iml" filepath="$PROJECT_DIR$/social-login-vkontakte-implicit/social-login-vkontakte-implicit.iml" />
     </modules>
   </component>
 </project>
