@@ -1,6 +1,6 @@
 package com.andrew.socialactionssample.di.module
 
-import com.andrew.social.login.facebook.implicit.initializer.FacebookInitializer
+import com.andrew.social.login.facebook.implicit.FacebookInitializer
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.initializer.Initializer
 import com.andrew.social.login.core.initializer.SocialLoginInitializer

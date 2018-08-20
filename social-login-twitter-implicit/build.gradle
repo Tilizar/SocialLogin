@@ -11,7 +11,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -20,8 +19,6 @@ dependencies {
     implementation project(':social-login-core')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.60'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation('com.twitter.sdk.android:twitter:3.3.0@aar') {
         transitive = true
         exclude group: 'com.android.support'

@@ -1,4 +1,4 @@
-package com.andrew.social.login.facebook.implicit.initializer
+package com.andrew.social.login.facebook.implicit
 
 import android.app.Application
 import com.andrew.social.login.core.initializer.Initializer
