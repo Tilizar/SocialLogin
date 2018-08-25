@@ -5,11 +5,9 @@ import android.content.Intent
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
-import com.twitter.sdk.android.core.TwitterAuthConfig
-import com.twitter.sdk.android.core.TwitterCore
+import com.andrew.social.login.core.exception.SocialLoginException
+import com.twitter.sdk.android.core.*
 import com.twitter.sdk.android.core.identity.TwitterAuthClient
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 
 /**
  * Created by Andrew on 17.06.2018.
@@ -18,13 +16,19 @@ import io.reactivex.disposables.Disposable
 class TwitterLoginActionImpl(activity: Activity) : SocialLoginAction(activity) {
 
     private val authClient: TwitterAuthClient = TwitterAuthClient()
-    private var loginCallback: TwitterLoginCallback? = null
-
-    private var disposable: Disposable? = null
 
     override fun login() {
-        loginCallback = TwitterLoginCallback()
-        authClient.authorize(activity, loginCallback)
+        authClient.authorize(activity, object : Callback<TwitterSession>() {
+            override fun success(result: Result<TwitterSession>?) {
+                result?.data?.authToken?.token?.let {
+                    callback?.onSuccess(SocialType.TWITTER, ResponseType.TOKEN, it)
+                }
+            }
+
+            override fun failure(exception: TwitterException?) {
+                callback?.onError(SocialLoginException(SocialType.TWITTER))
+            }
+        })
     }
 
     override fun logout() {
@@ -34,16 +38,5 @@ class TwitterLoginActionImpl(activity: Activity) : SocialLoginAction(activity) {
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         if (requestCode != TwitterAuthConfig.DEFAULT_AUTH_REQUEST_CODE) return
         authClient.onActivityResult(requestCode, resultCode, intent)
-        loginCallback?.let { callback ->
-            disposable = callback.observe()
-                    .map { it.data.authToken.token }
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ this.callback?.onSuccess(SocialType.TWITTER, ResponseType.TOKEN, it) },
-                            { this.callback?.onError(it) })
-        }
-    }
-
-    override fun cancelRequest() {
-        disposable = null
     }
 }

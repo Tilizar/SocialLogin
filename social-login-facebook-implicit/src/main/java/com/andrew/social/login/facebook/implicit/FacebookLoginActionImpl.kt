@@ -5,11 +5,12 @@ import android.content.Intent
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
-import com.andrew.social.login.facebook.implicit.callback.FacebookLoginCallback
+import com.andrew.social.login.core.exception.SocialLoginException
 import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
 import com.facebook.login.LoginManager
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import com.facebook.login.LoginResult
 
 /**
  * Created by Andrew on 24.06.2018
@@ -19,12 +20,23 @@ class FacebookLoginActionImpl(activity: Activity,
                               private val readPermissions: List<String> = emptyList()) : SocialLoginAction(activity) {
 
     private val callbackManager = CallbackManager.Factory.create()
-    private val loginCallback = FacebookLoginCallback()
-
-    private var disposable: Disposable? = null
 
     init {
-        LoginManager.getInstance().registerCallback(callbackManager, loginCallback)
+        LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(result: LoginResult?) {
+                result?.accessToken?.token?.let {
+                    callback?.onSuccess(SocialType.FACEBOOK, ResponseType.TOKEN, it)
+                }
+            }
+
+            override fun onCancel() {
+
+            }
+
+            override fun onError(error: FacebookException?) {
+                callback?.onError(SocialLoginException(SocialType.FACEBOOK))
+            }
+        })
     }
 
     override fun login() {
@@ -36,16 +48,10 @@ class FacebookLoginActionImpl(activity: Activity,
     }
 
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
-        loginCallback.recreate()
-        if (!callbackManager.onActivityResult(requestCode, resultCode, intent)) return
-        disposable = loginCallback.observe()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ callback?.onSuccess(SocialType.FACEBOOK, ResponseType.TOKEN, it) },
-                        { callback?.onError(it) })
+        callbackManager.onActivityResult(requestCode, resultCode, intent)
     }
 
     override fun cancelRequest() {
         LoginManager.getInstance().unregisterCallback(callbackManager)
-        disposable = null
     }
 }
