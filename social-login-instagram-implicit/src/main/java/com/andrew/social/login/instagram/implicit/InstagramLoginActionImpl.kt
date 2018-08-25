@@ -22,13 +22,8 @@ class InstagramLoginActionImpl(activity: Activity,
     override var url = "https://instagram.com/oauth/authorize/" +
             "?client_id=$clientId" +
             "&redirect_uri=$redirectUrl" +
-            "&response_type=token"
-
-    init {
-        if (!TextUtils.isEmpty(scope)) {
-            url += "&scope=$scope"
-        }
-    }
+            "&response_type=token" +
+            if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
 
     override fun login() {
         InstagramLoginActivity.openInstagramLoginActivity(activity, INSTAGRAM_REQUEST_CODE, url, redirectUrl)

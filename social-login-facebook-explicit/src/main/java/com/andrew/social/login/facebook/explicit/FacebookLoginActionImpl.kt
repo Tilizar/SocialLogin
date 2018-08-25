@@ -1,6 +1,7 @@
 package com.andrew.social.login.facebook.explicit
 
 import android.app.Activity
+import android.text.TextUtils
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.BaseWebSocialLoginAction
 
@@ -10,14 +11,16 @@ import com.andrew.social.login.core.action.BaseWebSocialLoginAction
 
 class FacebookLoginActionImpl(activity: Activity,
                               clientId: String,
-                              redirectUrl: String) : BaseWebSocialLoginAction(activity, SocialType.FACEBOOK, FACEBOOK_REQUEST_CODE) {
+                              redirectUrl: String,
+                              scope: String = "") : BaseWebSocialLoginAction(activity, SocialType.FACEBOOK, FACEBOOK_REQUEST_CODE) {
 
     companion object {
         private const val FACEBOOK_REQUEST_CODE = 10002
     }
 
-    override val url = "https://www.facebook.com/v3.0/dialog/oauth?" +
+    override val url = "https://www.facebook.com/v3.1/dialog/oauth?" +
             "client_id=$clientId" +
             "&redirect_uri=$redirectUrl" +
-            "&state={state-param}"
+            "&state=randomStringToPreventShit" +
+            if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
 }

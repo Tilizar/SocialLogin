@@ -1,9 +1,11 @@
-package com.andrew.social.login.core.action
+package com.andrew.social.login.core.manager
 
 import android.content.Intent
 import android.os.Build
 import android.webkit.CookieManager
 import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.action.SocialLoginAction
+import com.andrew.social.login.core.action.SocialLoginCallback
 
 /**
  * Created by Andrew on 16.06.2018.

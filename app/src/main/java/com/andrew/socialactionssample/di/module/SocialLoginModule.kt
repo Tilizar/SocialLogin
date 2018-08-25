@@ -3,7 +3,7 @@ package com.andrew.socialactionssample.di.module
 import android.app.Activity
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
-import com.andrew.social.login.core.action.SocialLoginManager
+import com.andrew.social.login.core.manager.SocialLoginManager
 import com.andrew.social.login.facebook.explicit.FacebookLoginActionImpl
 import com.andrew.social.login.github.explicit.GithubLoginActionImpl
 import com.andrew.social.login.google.explicit.GoogleLoginActionImpl

@@ -20,11 +20,6 @@ class GithubLoginActionImpl(activity: Activity,
     override var url = "https://github.com/login/oauth/authorize" +
             "?client_id=$clientId" +
             "&redirect_uri=$redirectUrl" +
-            "&state=rndm_str_to_protect_ur_auth"
-
-    init {
-        if (!TextUtils.isEmpty(scope)) {
-            url += "&scope=$scope"
-        }
-    }
+            "&state=rndm_str_to_protect_ur_auth" +
+            if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
 }

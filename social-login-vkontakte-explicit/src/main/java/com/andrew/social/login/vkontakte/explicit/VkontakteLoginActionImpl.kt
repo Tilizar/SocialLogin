@@ -21,11 +21,6 @@ class VkontakteLoginActionImpl(activity: Activity,
     override var url = "https://oauth.vk.com/authorize?" +
             "response_type=code" +
             "&client_id=$clientId" +
-            "&redirect_uri=$redirectUrl"
-
-    init {
-        if (!TextUtils.isEmpty(scope)) {
-            url += "&scope=$scope"
-        }
-    }
+            "&redirect_uri=$redirectUrl" +
+            if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
 }
