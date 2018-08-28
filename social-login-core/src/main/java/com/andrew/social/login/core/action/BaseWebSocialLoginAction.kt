@@ -5,7 +5,8 @@ import android.content.Intent
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.exception.SocialLoginException
-import com.andrew.social.login.core.view.WebViewLoginActivity
+import com.andrew.social.login.core.web.WebActivityStarter
+import com.andrew.social.login.core.web.WebActivityStarter.BUNDLE_CODE
 
 
 abstract class BaseWebSocialLoginAction(activity: Activity,
@@ -16,14 +17,14 @@ abstract class BaseWebSocialLoginAction(activity: Activity,
     abstract val url: String
 
     override fun login() {
-        WebViewLoginActivity.openLoginActivity(activity, socialRequestCode, url)
+        WebActivityStarter.openLoginActivity(activity, socialRequestCode, url, socialType = socialType, responseType = responseType)
     }
 
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         if (requestCode != socialRequestCode) return
 
         if (resultCode == Activity.RESULT_OK) {
-            intent?.extras?.getString(WebViewLoginActivity.BUNDLE_CODE)?.let { callback?.onSuccess(socialType, responseType, it) }
+            intent?.extras?.getString(BUNDLE_CODE)?.let { callback?.onSuccess(socialType, responseType, it) }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             callback?.onError(SocialLoginException(socialType))
         }

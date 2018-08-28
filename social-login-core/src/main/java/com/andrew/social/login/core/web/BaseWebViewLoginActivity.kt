@@ -1,54 +1,47 @@
-package com.andrew.social.login.core.view
+package com.andrew.social.login.core.web
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.annotation.LayoutRes
 import android.view.View
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.andrew.social.login.core.R
-import kotlinx.android.synthetic.main.activity_webview_login.*
+import com.andrew.social.login.core.ResponseType
+import com.andrew.social.login.core.SocialType
+import com.andrew.social.login.core.web.WebActivityStarter.BUNDLE_CODE
+import com.andrew.social.login.core.web.WebActivityStarter.BUNDLE_RESPONSE_TYPE
+import com.andrew.social.login.core.web.WebActivityStarter.BUNDLE_SOCIAL_TYPE
+import com.andrew.social.login.core.web.WebActivityStarter.BUNDLE_URL
 
 /**
- * Created by Andrew on 16.07.2018
+ * Created by Andrey Matyushin on 28.08.2018
  */
 
-open class WebViewLoginActivity : AppCompatActivity() {
+abstract class BaseWebViewLoginActivity : Activity() {
 
-    companion object {
-        const val BUNDLE_URL = "BUNDLE_URL"
-        const val BUNDLE_QUERY_PARAM = "BUNDLE_QUERY_PARAM"
+    @LayoutRes abstract fun layoutResId(): Int
 
-        const val BUNDLE_CODE = "BUNDLE_CODE"
+    abstract fun webView(): WebView
 
-        @JvmStatic
-        fun openLoginActivity(activity: Activity,
-                              requestCode: Int,
-                              url: String,
-                              queryParam: String = "code") {
-            activity.startActivityForResult(Intent(activity, WebViewLoginActivity::class.java).apply {
-                putExtra(BUNDLE_URL, url)
-                putExtra(BUNDLE_QUERY_PARAM, queryParam)
-            }, requestCode)
-        }
-    }
+    abstract fun showLoading()
+
+    abstract fun hideLoading()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_webview_login)
+        setContentView(layoutResId())
         setUpWebView()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setUpWebView() {
-        webview.apply {
+        webView().apply {
             isVerticalScrollBarEnabled = false
             isHorizontalScrollBarEnabled = false
             webViewClient = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -93,30 +86,27 @@ open class WebViewLoginActivity : AppCompatActivity() {
     abstract inner class CustomWebViewClient : WebViewClient() {
         override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
             super.onReceivedError(view, request, error)
-            progress.visibility = View.GONE
+            hideLoading()
             finishWithError()
         }
 
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
-            progress.visibility = View.VISIBLE
+            showLoading()
         }
 
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
-            progress.visibility = View.GONE
+            hideLoading()
         }
     }
 
-    open fun handleUrl(url: String?): Boolean {
-        val uri = Uri.parse(url)
-        val param = intent.extras.getString(BUNDLE_QUERY_PARAM)
-        return if (uri.queryParameterNames.contains(param)) {
-            finishWithSuccess(uri.getQueryParameter(param))
-            true
-        } else {
-            webview.loadUrl(url)
-            false
+    fun handleUrl(url: String?): Boolean {
+        val socialType = intent.extras.getSerializable(BUNDLE_SOCIAL_TYPE) as SocialType?
+        val responseType = intent.extras.getSerializable(BUNDLE_RESPONSE_TYPE) as ResponseType?
+        if (socialType == null || responseType == null) {
+            return UrlHandler.DEFAULT_ACTION.invoke(url, this);
         }
+        return UrlHandler.getHandler(socialType, responseType)?.invoke(url, this) ?: UrlHandler.DEFAULT_ACTION.invoke(url, this);
     }
 }

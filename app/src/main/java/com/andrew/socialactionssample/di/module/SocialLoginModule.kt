@@ -7,7 +7,7 @@ import com.andrew.social.login.core.manager.SocialLoginManager
 import com.andrew.social.login.facebook.explicit.FacebookLoginActionImpl
 import com.andrew.social.login.github.explicit.GithubLoginActionImpl
 import com.andrew.social.login.google.explicit.GoogleLoginActionImpl
-import com.andrew.social.login.instagram.explicit.InstagramLoginActionImpl
+import com.andrew.social.login.instagram.implicit.InstagramLoginActionImpl
 import com.andrew.social.login.linkedin.explicit.LinkedInLoginActionImpl
 import com.andrew.social.login.twitter.implicit.TwitterLoginActionImpl
 import com.andrew.social.login.vkontakte.explicit.VkontakteLoginActionImpl
