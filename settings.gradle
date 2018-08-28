@@ -1,4 +1,4 @@
-include ':app', ':social-login-github-explicit', ':social-login-facebook-implicit', ':social-login-vkontakte-implicit', ':social-login-instagram-implicit',
+include ':app', ':social-login-github-explicit', ':social-login-facebook-implicit', ':social-login-vkontakte-implicit', ':social-login-instagram-implicit', ':social-login-core-web',
         ':social-login-core',
         ':social-login-facebook-explicit',
         ':social-login-google-explicit',

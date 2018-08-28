@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.andrew.social.login.vkontakte">
+    package="com.andrew.social.login.vkontakte.implicit">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

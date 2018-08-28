@@ -4,7 +4,7 @@ import android.app.Activity
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.core.manager.SocialLoginManager
-import com.andrew.social.login.facebook.explicit.FacebookLoginActionImpl
+import com.andrew.social.login.facebook.implicit.FacebookLoginActionImpl
 import com.andrew.social.login.github.explicit.GithubLoginActionImpl
 import com.andrew.social.login.google.explicit.GoogleLoginActionImpl
 import com.andrew.social.login.instagram.implicit.InstagramLoginActionImpl
@@ -43,8 +43,8 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.FACEBOOK)
-    fun provideFacebookSocialAction(activity: android.app.Activity): SocialLoginAction = FacebookLoginActionImpl(activity, activity.getString(R.string.facebook_app_id), activity.getString(R.string.facebook_redirect_url))
-    //fun provideFacebookSocialAction(activity: Activity): SocialLoginAction = FacebookLoginActionImpl(activity)
+    //fun provideFacebookSocialAction(activity: android.app.Activity): SocialLoginAction = FacebookLoginActionImpl(activity, activity.getString(R.string.facebook_app_id), activity.getString(R.string.facebook_redirect_url))
+    fun provideFacebookSocialAction(activity: Activity): SocialLoginAction = FacebookLoginActionImpl(activity)
 
     @Provides
     @IntoMap

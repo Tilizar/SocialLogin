@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.andrew.social.login.facebook.explicit">
+    package="com.andrew.social.login.facebook.implicit">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

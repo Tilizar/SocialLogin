@@ -1,12 +1,9 @@
 package com.andrew.social.login.core.web
 
-import android.app.Activity
 import android.net.Uri
-import com.andrew.social.login.core.R.id.webview
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import kotlinx.android.synthetic.main.activity_webview_login.*
-import java.util.HashMap
 
 /**
  * Created by Andrey Matyushin on 28.08.2018

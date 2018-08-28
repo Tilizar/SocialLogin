@@ -57,6 +57,7 @@ dependencies {
 
     //socials
     implementation project(':social-login-core')
+    implementation project(':social-login-core-web')
     implementation project(':social-login-facebook-explicit')
     implementation project(':social-login-facebook-implicit')
     implementation project(':social-login-google-explicit')

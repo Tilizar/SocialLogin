@@ -6,8 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.view.View
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -25,7 +23,7 @@ import com.andrew.social.login.core.web.WebActivityStarter.BUNDLE_URL
 
 abstract class BaseWebViewLoginActivity : Activity() {
 
-    @LayoutRes abstract fun layoutResId(): Int
+    abstract fun layoutResId(): Int
 
     abstract fun webView(): WebView
 

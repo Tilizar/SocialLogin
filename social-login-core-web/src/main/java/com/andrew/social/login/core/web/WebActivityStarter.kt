@@ -44,8 +44,6 @@ object WebActivityStarter {
             putExtra(BUNDLE_RESPONSE_TYPE, responseType)
         }
 
-        intent.resolveActivity(activity.packageManager)
-
         activity.startActivityForResult(intent, requestCode)
     }
 }

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
@@ -8,20 +9,18 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
     }
+
     buildTypes {
         release {
             minifyEnabled false
         }
     }
+
 }
 
 dependencies {
     implementation project(':social-login-core')
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.60'
-    implementation('com.twitter.sdk.android:twitter:3.3.0@aar') {
-        transitive = true
-        exclude group: 'com.android.support'
-    }
 }
 repositories {
     mavenCentral()

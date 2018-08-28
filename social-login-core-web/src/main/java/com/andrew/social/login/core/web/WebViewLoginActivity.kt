@@ -2,7 +2,6 @@ package com.andrew.social.login.core.web
 
 import android.view.View
 import android.webkit.WebView
-import com.andrew.social.login.core.R
 import kotlinx.android.synthetic.main.activity_webview_login.*
 
 /**

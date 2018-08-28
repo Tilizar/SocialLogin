@@ -4,7 +4,7 @@ import android.app.Activity
 import android.text.TextUtils
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
-import com.andrew.social.login.core.action.BaseWebSocialLoginAction
+import com.andrew.social.login.core.web.BaseWebSocialLoginAction
 import com.andrew.social.login.core.web.UrlHandler
 import com.andrew.social.login.core.web.WebActivityStarter
 import com.andrew.social.login.core.web.WebActivityStarter.BUNDLE_REDIRECT_URL

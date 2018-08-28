@@ -3,7 +3,7 @@ package com.andrew.social.login.facebook.explicit
 import android.app.Activity
 import android.text.TextUtils
 import com.andrew.social.login.core.SocialType
-import com.andrew.social.login.core.action.BaseWebSocialLoginAction
+import com.andrew.social.login.core.web.BaseWebSocialLoginAction
 
 /**
  * Created by Andrew on 24.06.2018

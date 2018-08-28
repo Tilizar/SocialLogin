@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.andrew.social.login.github" />
+<manifest package="com.andrew.social.login.github.explicit" />
