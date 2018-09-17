@@ -8,6 +8,8 @@ import com.andrew.social.login.core.SocialType
  */
 
 interface SocialLoginCallback {
+
     fun onSuccess(socialType: SocialType, responseType: ResponseType, response: String)
+
     fun onError(error: Throwable)
 }

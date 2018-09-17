@@ -9,7 +9,7 @@ import com.andrew.social.login.core.web.BaseWebSocialLoginAction
  */
 class LinkedInLoginActionImpl(activity: Activity,
                               clientId: String,
-                              redirectUrl: String) : BaseWebSocialLoginAction(activity, SocialType.GITHUB, LINKED_IN_REQUEST_CODE) {
+                              redirectUrl: String) : BaseWebSocialLoginAction(activity, SocialType.LINKED_IN, LINKED_IN_REQUEST_CODE) {
 
     companion object {
         private const val LINKED_IN_REQUEST_CODE = 10004

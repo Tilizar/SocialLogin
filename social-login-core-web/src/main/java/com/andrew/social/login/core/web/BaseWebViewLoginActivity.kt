@@ -103,8 +103,8 @@ abstract class BaseWebViewLoginActivity : Activity() {
         val socialType = intent.extras.getSerializable(BUNDLE_SOCIAL_TYPE) as SocialType?
         val responseType = intent.extras.getSerializable(BUNDLE_RESPONSE_TYPE) as ResponseType?
         if (socialType == null || responseType == null) {
-            return UrlHandler.DEFAULT_ACTION.invoke(url, this);
+            return UrlHandler.DEFAULT_ACTION.invoke(url, this)
         }
-        return UrlHandler.getHandler(socialType, responseType)?.invoke(url, this) ?: UrlHandler.DEFAULT_ACTION.invoke(url, this);
+        return UrlHandler.getHandler(socialType, responseType)?.invoke(url, this) ?: UrlHandler.DEFAULT_ACTION.invoke(url, this)
     }
 }
