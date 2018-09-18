@@ -1,8 +1,11 @@
-include ':app', ':social-login-github-explicit', ':social-login-facebook-implicit', ':social-login-vkontakte-implicit', ':social-login-instagram-implicit', ':social-login-core-web',
+include ':sample', ':github-explicit',
+        ':facebook-implicit',
+        ':vkontakte-implicit',
+        ':instagram-implicit',
         ':social-login-core',
-        ':social-login-facebook-explicit',
-        ':social-login-google-explicit',
-        ':social-login-instagram-explicit',
-        ':social-login-twitter-implicit',
-        ':social-login-vkontakte-explicit',
-        ':social-login-linkedin-explicit'
+        ':facebook-explicit',
+        ':google-explicit',
+        ':instagram-explicit',
+        ':twitter-implicit',
+        ':vkontakte-explicit',
+        ':linkedin-explicit'

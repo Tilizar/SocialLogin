@@ -1,7 +1,28 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+ext {
+    bintrayRepo = 'social_login'
+
+    publishedGroupId = 'com.andrew.social.login'
+    libraryName = 'social_login'
+
+    siteUrl = 'https://github.com/AndrewHeyO/SocialLogin'
+    issuesUrl = 'https://github.com/AndrewHeyO/SocialLogin/issues'
+    gitUrl = 'https://github.com/AndrewHeyO/SocialLogin.git'
+
+    developerId = 'andrewheyo'
+    developerName = 'Andrey Matyushin'
+    developerEmail = 'andrew.matyushin@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+    tags = ["Android", "Social Login"]
+}
+
 buildscript {
-    ext.kotlin_version = '1.2.60'
+    ext.kotlin_version = '1.2.70'
     repositories {
         google()
         jcenter()
@@ -9,6 +30,8 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,6 +42,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://dl.bintray.com/andrewheyo/social_login' }
     }
 }
 
