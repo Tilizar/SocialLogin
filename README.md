@@ -91,10 +91,6 @@ class CustomWebViewLoginActivity : BaseWebViewLoginActivity() {
 19) - [ ] Yahoo!
 20) - [ ] Wordpress
 
-Other
-- [ ] Populate Wiki with info about how to connect each social to your project
-- [X] Make each social login module as an independent library (based on core library)
-
 ## License
 
 ```
