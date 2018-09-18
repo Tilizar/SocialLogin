@@ -35,6 +35,39 @@ dependencies {
 }
 ```
 
+## Usage
+
+You can use this library with two ways:
+
+1. If you have only one social network to integrate, you can use this social's Login Action
+2. If you have two or more social networks, you can use [Social Login Manager](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/manager/SocialLoginManager.kt) and map of [Social Login Actions](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/action/SocialLoginAction.kt)
+
+You need to define [Social Login Callback](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/action/SocialLoginCallback.kt)
+
+_Also if you use several modules that have own initializers, you can use [Social Login Initializer](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/initializer/SocialLoginInitializer.kt)_
+
+## Customize web login
+
+Library provides the way to use your own Activity for web login.
+To do that you need to inherite your Activity from [BaseWebViewLoginActivity](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/web/WebViewLoginActivity.kt) and call [WebActivityStarter.setWebLoginActivity()](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/web/WebActivityStarter.kt#L23) before you login
+
+```kotlin
+class CustomWebViewLoginActivity : BaseWebViewLoginActivity() {
+
+    override fun layoutResId(): Int = R.layout.activity_custom_webview_login
+
+    override fun webView(): WebView = webview
+
+    override fun showLoading() {
+        progress.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        progress.visibility = View.INVISIBLE
+    }
+}
+```
+
 ## Progress
 
 1) - [X] VKontakte
