@@ -30,11 +30,10 @@ ext {
     bintrayName = 'google-explicit'
     artifact = 'google-explicit'
     libraryDescription = 'Social Login - google-explicit'
-    libraryVersion = '0.0.2'
 }
 
 group = rootProject.ext.publishedGroupId
-version = libraryVersion
+version = rootProject.ext.libraryVersion
 
 install {
     repositories.mavenInstaller {

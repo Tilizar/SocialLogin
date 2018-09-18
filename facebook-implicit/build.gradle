@@ -30,11 +30,10 @@ ext {
     bintrayName = 'facebook-implicit'
     artifact = 'facebook-implicit'
     libraryDescription = 'Social Login - facebook-implicit'
-    libraryVersion = '0.0.2'
 }
 
 group = rootProject.ext.publishedGroupId
-version = libraryVersion
+version = rootProject.ext.libraryVersion
 
 install {
     repositories.mavenInstaller {

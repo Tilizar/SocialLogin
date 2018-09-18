@@ -31,11 +31,10 @@ ext {
     bintrayName = 'twitter-implicit'
     artifact = 'twitter-implicit'
     libraryDescription = 'Social Login - twitter-implicit'
-    libraryVersion = '0.0.2'
 }
 
 group = rootProject.ext.publishedGroupId
-version = libraryVersion
+version = rootProject.ext.libraryVersion
 
 install {
     repositories.mavenInstaller {

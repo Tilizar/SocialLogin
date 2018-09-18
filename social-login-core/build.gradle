@@ -35,11 +35,10 @@ ext {
     bintrayName = 'social-login-core'
     artifact = 'social-login-core'
     libraryDescription = 'Social Login - core'
-    libraryVersion = '0.0.2'
 }
 
 group = rootProject.ext.publishedGroupId
-version = libraryVersion
+version = rootProject.ext.libraryVersion
 
 install {
     repositories.mavenInstaller {

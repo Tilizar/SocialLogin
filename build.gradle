@@ -5,6 +5,7 @@ ext {
 
     publishedGroupId = 'com.andrew.social.login'
     libraryName = 'social_login'
+    libraryVersion = '0.0.1-alpha'
 
     siteUrl = 'https://github.com/AndrewHeyO/SocialLogin'
     issuesUrl = 'https://github.com/AndrewHeyO/SocialLogin/issues'

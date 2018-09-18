@@ -27,11 +27,10 @@ ext {
     bintrayName = 'instagram-implicit'
     artifact = 'instagram-implicit'
     libraryDescription = 'Social Login - instagram-implicit'
-    libraryVersion = '0.0.2'
 }
 
 group = rootProject.ext.publishedGroupId
-version = libraryVersion
+version = rootProject.ext.libraryVersion
 
 install {
     repositories.mavenInstaller {

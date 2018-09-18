@@ -27,11 +27,10 @@ ext {
     bintrayName = 'vkontakte-explicit'
     artifact = 'vkontakte-explicit'
     libraryDescription = 'Social Login - vkontakte-explicit'
-    libraryVersion = '0.0.2'
 }
 
 group = rootProject.ext.publishedGroupId
-version = libraryVersion
+version = rootProject.ext.libraryVersion
 
 install {
     repositories.mavenInstaller {

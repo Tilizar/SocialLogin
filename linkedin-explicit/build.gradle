@@ -27,11 +27,10 @@ ext {
     bintrayName = 'linkedin-explicit'
     artifact = 'linkedin-explicit'
     libraryDescription = 'Social Login - linkedin-explicit'
-    libraryVersion = '0.0.2'
 }
 
 group = rootProject.ext.publishedGroupId
-version = libraryVersion
+version = rootProject.ext.libraryVersion
 
 install {
     repositories.mavenInstaller {
