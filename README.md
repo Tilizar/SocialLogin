@@ -1,4 +1,6 @@
 # Social Login
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+[![GitHub version](https://badge.fury.io/gh/AndrewHeyO%2FSocialLogin.svg)](https://github.com/AndrewHeyO/SocialLogin)
 
 With this library you can easily add authorization via social network in your application
 
@@ -69,6 +71,10 @@ class CustomWebViewLoginActivity : BaseWebViewLoginActivity() {
     }
 }
 ```
+
+## Wiki
+
+For more information check [Wiki](https://github.com/AndrewHeyO/SocialLogin/wiki)
 
 ## Progress
 
