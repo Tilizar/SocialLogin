@@ -1,3 +1,5 @@
+# Social Login
+
 With this library you can easily add authorization via social network in your application
 
 Each social network and auth type provides in separate modules
