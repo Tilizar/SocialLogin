@@ -49,5 +49,5 @@ freeline_project_description.json
 gen-external-apklibs
 
 # Api Keys
-app/src/main/res/values/api-keys.xml
+sample/src/main/res/values/api-keys.xml
 
