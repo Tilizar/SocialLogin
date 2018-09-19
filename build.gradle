@@ -15,9 +15,9 @@ ext {
     developerName = 'Andrey Matyushin'
     developerEmail = 'andrew.matyushin@gmail.com'
 
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+    licenseName = 'MIT License'
+    licenseUrl = 'https://opensource.org/licenses/mit-license.php'
+    allLicenses = ["MIT"]
 
     tags = ["Android", "Social Login"]
 }
