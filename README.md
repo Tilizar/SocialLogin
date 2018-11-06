@@ -1,13 +1,13 @@
 # Social Login
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/AndrewHeyO/SocialLogin#license)
 [![GitHub version](https://badge.fury.io/gh/AndrewHeyO%2FSocialLogin.svg)](https://github.com/AndrewHeyO/SocialLogin)
 
 With this library you can easily add authorization via social network in your application
 
 Each social network and auth type provides in separate modules
 There are 2 auth types: 
-* Implicit - when you login inside your application and get token
-* Explicit - when you login on your server and get server code for it
+* Implicit - when you login inside your application and receive token
+* Explicit - when you login on your server and receive server code for it
 
 ## Integration
 
