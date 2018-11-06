@@ -10,7 +10,7 @@ import com.andrew.social.login.google.explicit.GoogleLoginActionImpl
 import com.andrew.social.login.instagram.implicit.InstagramLoginActionImpl
 import com.andrew.social.login.linkedin.explicit.LinkedInLoginActionImpl
 import com.andrew.social.login.twitter.implicit.TwitterLoginActionImpl
-import com.andrew.social.login.vkontakte.explicit.VkontakteLoginActionImpl
+import com.andrew.social.login.vkontakte.implicit.VkontakteLoginActionImpl
 import com.andrew.socialactionssample.R
 import com.andrew.socialactionssample.di.qualifier.SocialKey
 import dagger.Module
@@ -27,8 +27,8 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.VKONTAKTE)
-    fun provideVkSocialAction(activity: android.app.Activity): SocialLoginAction = VkontakteLoginActionImpl(activity, activity.getString(R.string.com_vk_sdk_AppId), "http://placeholder.com")
-    //fun provideVkSocialAction(activity: Activity): SocialLoginAction = VkontakteLoginActionImpl(activity)
+    //fun provideVkSocialAction(activity: Activity): SocialLoginAction = VkontakteLoginActionImpl(activity, activity.getString(R.string.com_vk_sdk_AppId), "http://placeholder.com")
+    fun provideVkSocialAction(activity: Activity): SocialLoginAction = VkontakteLoginActionImpl(activity)
 
     @Provides
     @IntoMap
@@ -43,7 +43,7 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.FACEBOOK)
-    fun provideFacebookSocialAction(activity: android.app.Activity): SocialLoginAction = FacebookLoginActionImpl(activity, activity.getString(R.string.facebook_app_id), activity.getString(R.string.facebook_redirect_url))
+    fun provideFacebookSocialAction(activity: Activity): SocialLoginAction = FacebookLoginActionImpl(activity, activity.getString(R.string.facebook_app_id), activity.getString(R.string.facebook_redirect_url))
     //fun provideFacebookSocialAction(activity: Activity): SocialLoginAction = FacebookLoginActionImpl(activity)
 
     @Provides

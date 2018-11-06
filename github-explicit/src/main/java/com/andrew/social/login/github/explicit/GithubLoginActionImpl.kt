@@ -3,7 +3,7 @@ package com.andrew.social.login.github.explicit
 import android.app.Activity
 import android.text.TextUtils
 import com.andrew.social.login.core.SocialType
-import com.andrew.social.login.core.randomUTF
+import com.andrew.social.login.core.randomString
 import com.andrew.social.login.core.web.BaseWebSocialLoginAction
 
 /**
@@ -21,6 +21,6 @@ class GithubLoginActionImpl(activity: Activity,
     override var url = "https://github.com/login/oauth/authorize" +
             "?client_id=$clientId" +
             "&redirect_uri=$redirectUrl" +
-            "&state=${randomUTF()}" +
+            "&state=${randomString()}" +
             if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
 }

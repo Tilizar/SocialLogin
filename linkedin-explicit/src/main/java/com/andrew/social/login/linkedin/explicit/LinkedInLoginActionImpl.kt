@@ -2,7 +2,7 @@ package com.andrew.social.login.linkedin.explicit
 
 import android.app.Activity
 import com.andrew.social.login.core.SocialType
-import com.andrew.social.login.core.randomUTF
+import com.andrew.social.login.core.randomString
 import com.andrew.social.login.core.web.BaseWebSocialLoginAction
 
 /**
@@ -20,5 +20,5 @@ class LinkedInLoginActionImpl(activity: Activity,
             "?response_type=code" +
             "&client_id=$clientId" +
             "&redirect_uri=$redirectUrl" +
-            "&state=${randomUTF()}"
+            "&state=${randomString()}"
 }

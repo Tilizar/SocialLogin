@@ -18,7 +18,7 @@ object UrlHandler {
     val DEFAULT_ACTION: (String?, BaseWebViewLoginActivity) -> Boolean = { url, activity ->
         val uri = Uri.parse(url)
         if (uri.queryParameterNames.contains(QUERY_CODE)) {
-            activity.finishWithSuccess(uri.getQueryParameter(QUERY_CODE))
+            activity.finishWithSuccess(uri.getQueryParameter(QUERY_CODE) ?: "")
             true
         } else {
             activity.webview.loadUrl(url)

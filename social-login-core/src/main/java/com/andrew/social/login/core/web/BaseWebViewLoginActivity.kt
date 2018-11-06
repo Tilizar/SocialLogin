@@ -48,7 +48,7 @@ abstract class BaseWebViewLoginActivity : Activity() {
                 LoginWebViewClientBelowLollipop()
             }
             settings.javaScriptEnabled = true
-            loadUrl(intent.extras.getString(BUNDLE_URL))
+            intent.extras?.getString(BUNDLE_URL)?.let { loadUrl(it) } ?: throw IllegalArgumentException("No URL passed")
         }
     }
 
@@ -100,8 +100,8 @@ abstract class BaseWebViewLoginActivity : Activity() {
     }
 
     fun handleUrl(url: String?): Boolean {
-        val socialType = intent.extras.getSerializable(BUNDLE_SOCIAL_TYPE) as SocialType?
-        val responseType = intent.extras.getSerializable(BUNDLE_RESPONSE_TYPE) as ResponseType?
+        val socialType = intent.extras?.getSerializable(BUNDLE_SOCIAL_TYPE) as SocialType?
+        val responseType = intent.extras?.getSerializable(BUNDLE_RESPONSE_TYPE) as ResponseType?
         if (socialType == null || responseType == null) {
             return UrlHandler.DEFAULT_ACTION.invoke(url, this)
         }

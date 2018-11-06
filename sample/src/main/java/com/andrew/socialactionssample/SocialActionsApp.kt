@@ -4,8 +4,6 @@ import android.content.Context
 import android.support.multidex.MultiDex
 import com.andrew.social.login.core.initializer.SocialLoginInitializer
 import com.andrew.socialactionssample.di.DaggerApplicationComponent
-import com.andrew.socialactionssample.presentation.feature.customWebLogin.CustomWebViewLoginActivity
-import com.andrew.social.login.core.web.WebActivityStarter
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import javax.inject.Inject
@@ -27,7 +25,7 @@ class SocialActionsApp : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        WebActivityStarter.setWebLoginActivity(CustomWebViewLoginActivity::class.java)
+        //WebActivityStarter.setWebLoginActivity(CustomWebViewLoginActivity::class.java)
         socialInit.initAll(this)
     }
 
