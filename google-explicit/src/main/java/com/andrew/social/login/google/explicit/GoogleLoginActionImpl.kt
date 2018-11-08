@@ -11,13 +11,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.common.api.Scope
 
 /**
  * Created by Andrew on 28.06.2018
  */
 
 class GoogleLoginActionImpl(activity: Activity,
-                            private val clientId: String) : SocialLoginAction(activity) {
+                            private val clientId: String,
+                            private val scopes: List<AuthScope> = emptyList()) : SocialLoginAction(activity) {
 
     companion object {
         private const val REQUEST_CODE_GOOGLE = 10003
@@ -27,6 +29,10 @@ class GoogleLoginActionImpl(activity: Activity,
 
     override fun login() {
         initGoogleApiClient()
+
+        googleApi?.let {
+            if (!it.isConnected) it.connect()
+        }
 
         if (!checkPlayServices()) {
             callback?.onError(PlayServicesNotInstalledException())
@@ -38,7 +44,7 @@ class GoogleLoginActionImpl(activity: Activity,
 
     override fun logout() {
         googleApi?.apply {
-            if (!isConnected) return
+            if (!isConnected) connect()
 
             Auth.GoogleSignInApi.signOut(googleApi)
                     .setResultCallback {
@@ -70,13 +76,18 @@ class GoogleLoginActionImpl(activity: Activity,
 
         val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestProfile()
+                .requestEmail()
+                .addScopes()
                 .requestIdToken(clientId)
 
         googleApi = GoogleApiClient.Builder(activity)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, options.build())
                 .build()
+    }
 
-        googleApi?.connect()
+    private fun GoogleSignInOptions.Builder.addScopes(): GoogleSignInOptions.Builder {
+        scopes.forEach { requestScopes(Scope(it.scope)) }
+        return this
     }
 
     private fun checkPlayServices(): Boolean {
@@ -84,4 +95,40 @@ class GoogleLoginActionImpl(activity: Activity,
         val result = googleAPI.isGooglePlayServicesAvailable(activity)
         return result == ConnectionResult.SUCCESS
     }
+}
+
+enum class AuthScope(val scope: String) {
+    PROFILE("profile"),
+    EMAIL("email"),
+    OPEN_ID("openid"),
+
+    @Deprecated("")
+    PLUS_LOGIN("https://www.googleapis.com/auth/plus.login"),
+    PLUS_ME("https://www.googleapis.com/auth/plus.me"),
+    GAMES("https://www.googleapis.com/auth/games"),
+    GAMES_LITE("https://www.googleapis.com/auth/games_lite"),
+    CLOUD_SAVE("https://www.googleapis.com/auth/datastoremobile"),
+    APP_STATE("https://www.googleapis.com/auth/appstate"),
+    DRIVE_FILE("https://www.googleapis.com/auth/drive.file"),
+    DRIVE_APPFOLDER("https://www.googleapis.com/auth/drive.appdata"),
+    DRIVE_FULL("https://www.googleapis.com/auth/drive"),
+    DRIVE_APPS("https://www.googleapis.com/auth/drive.apps"),
+    FITNESS_ACTIVITY_READ("https://www.googleapis.com/auth/fitness.activity.read"),
+    FITNESS_ACTIVITY_READ_WRITE("https://www.googleapis.com/auth/fitness.activity.write"),
+    FITNESS_LOCATION_READ("https://www.googleapis.com/auth/fitness.location.read"),
+    FITNESS_LOCATION_READ_WRITE("https://www.googleapis.com/auth/fitness.location.write"),
+    FITNESS_BODY_READ("https://www.googleapis.com/auth/fitness.body.read"),
+    FITNESS_BODY_READ_WRITE("https://www.googleapis.com/auth/fitness.body.write"),
+    FITNESS_NUTRITION_READ("https://www.googleapis.com/auth/fitness.nutrition.read"),
+    FITNESS_NUTRITION_READ_WRITE("https://www.googleapis.com/auth/fitness.nutrition.write"),
+    FITNESS_BLOOD_PRESSURE_READ("https://www.googleapis.com/auth/fitness.blood_pressure.read"),
+    FITNESS_BLOOD_PRESSURE_READ_WRITE("https://www.googleapis.com/auth/fitness.blood_pressure.write"),
+    FITNESS_BLOOD_GLUCOSE_READ("https://www.googleapis.com/auth/fitness.blood_glucose.read"),
+    FITNESS_BLOOD_GLUCOSE_READ_WRITE("https://www.googleapis.com/auth/fitness.blood_glucose.write"),
+    FITNESS_OXYGEN_SATURATION_READ("https://www.googleapis.com/auth/fitness.oxygen_saturation.read"),
+    FITNESS_OXYGEN_SATURATION_READ_WRITE("https://www.googleapis.com/auth/fitness.oxygen_saturation.write"),
+    FITNESS_BODY_TEMPERATURE_READ("https://www.googleapis.com/auth/fitness.body_temperature.read"),
+    FITNESS_BODY_TEMPERATURE_READ_WRITE("https://www.googleapis.com/auth/fitness.body_temperature.write"),
+    FITNESS_REPRODUCTIVE_HEALTH_READ("https://www.googleapis.com/auth/fitness.reproductive_health.read"),
+    FITNESS_REPRODUCTIVE_HEALTH_READ_WRITE("https://www.googleapis.com/auth/fitness.reproductive_health.write")
 }
