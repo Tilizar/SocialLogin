@@ -27,13 +27,14 @@ class SocialsAdapter(
     }
 
     private val socials: List<SocialModel> = arrayListOf(
-        SocialModel(SocialType.VKONTAKTE),
+        SocialModel(SocialType.VK),
         SocialModel(SocialType.TWITTER),
         SocialModel(SocialType.INSTAGRAM),
         SocialModel(SocialType.FACEBOOK),
         SocialModel(SocialType.GOOGLE),
         SocialModel(SocialType.LINKED_IN),
-        SocialModel(SocialType.GITHUB)
+        SocialModel(SocialType.GITHUB),
+        SocialModel(SocialType.AMAZON)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SocialViewHolder =

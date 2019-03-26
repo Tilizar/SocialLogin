@@ -18,7 +18,9 @@ class InstagramLoginActionImpl(
     clientId: String,
     private val redirectUrl: String,
     scope: String = ""
-) : BaseWebSocialLoginAction(activity, SocialType.INSTAGRAM, INSTAGRAM_REQUEST_CODE, ResponseType.TOKEN) {
+) : BaseWebSocialLoginAction(activity, ResponseType.TOKEN) {
+
+    override val socialType: SocialType = SocialType.INSTAGRAM
 
     init {
         UrlHandler.putHandler(SocialType.INSTAGRAM, ResponseType.TOKEN) { url, webActivity ->
@@ -41,8 +43,6 @@ class InstagramLoginActionImpl(
     }
 
     companion object {
-        private const val INSTAGRAM_REQUEST_CODE = 10001
-
         const val RESPONSE_TOKEN = "access_token"
         const val RESPONSE_ERROR = "error"
     }
@@ -54,6 +54,6 @@ class InstagramLoginActionImpl(
         if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
 
     override fun login() {
-        WebActivityStarter.openLoginActivity(activity, INSTAGRAM_REQUEST_CODE, url, redirectUrl, SocialType.INSTAGRAM, ResponseType.TOKEN)
+        WebActivityStarter.openLoginActivity(activity, requestCode, url, redirectUrl, SocialType.INSTAGRAM, ResponseType.TOKEN)
     }
 }

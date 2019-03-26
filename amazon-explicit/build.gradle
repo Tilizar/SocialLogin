@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    implementation project(':core')
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.21'
+}
+
+ext {
+    bintrayName = 'amazon-explicit'
+    artifact = 'amazon-explicit'
+    libraryDescription = 'Social Login - amazon-explicit'
+}
+
+apply from: '../publish.gradle'

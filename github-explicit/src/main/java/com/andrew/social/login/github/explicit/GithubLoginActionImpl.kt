@@ -15,11 +15,9 @@ class GithubLoginActionImpl(
     clientId: String,
     redirectUrl: String,
     scope: String = ""
-) : BaseWebSocialLoginAction(activity, SocialType.GITHUB, GITHUB_REQUEST_CODE) {
+) : BaseWebSocialLoginAction(activity) {
 
-    companion object {
-        private const val GITHUB_REQUEST_CODE = 10005
-    }
+    override val socialType: SocialType = SocialType.GITHUB
 
     override var url = "https://github.com/login/oauth/authorize" +
         "?client_id=$clientId" +

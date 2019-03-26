@@ -1,6 +1,7 @@
 package com.andrew.socialactionssample.di.module
 
 import android.app.Activity
+import com.andrew.social.login.amazon.explicit.AmazonLoginActionImpl
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.core.manager.SocialLoginManager
@@ -10,7 +11,7 @@ import com.andrew.social.login.google.explicit.GoogleLoginActionImpl
 import com.andrew.social.login.instagram.explicit.InstagramLoginActionImpl
 import com.andrew.social.login.linkedin.explicit.LinkedInLoginActionImpl
 import com.andrew.social.login.twitter.implicit.TwitterLoginActionImpl
-import com.andrew.social.login.vkontakte.implicit.VkontakteLoginActionImpl
+import com.andrew.social.login.vk.implicit.VkLoginActionImpl
 import com.andrew.socialactionssample.R
 import com.andrew.socialactionssample.di.qualifier.SocialKey
 import dagger.Module
@@ -26,9 +27,9 @@ class SocialLoginModule {
 
     @Provides
     @IntoMap
-    @SocialKey(SocialType.VKONTAKTE)
-    //fun provideVkSocialAction(activity: Activity): SocialLoginAction = VkontakteLoginActionImpl(activity, activity.getString(R.string.vk_client_id), "http://placeholder.com")
-    fun provideVkSocialAction(activity: Activity): SocialLoginAction = VkontakteLoginActionImpl(activity)
+    @SocialKey(SocialType.VK)
+    //fun provideVkSocialAction(activity: Activity): SocialLoginAction = VkLoginActionImpl(activity, activity.getString(R.string.vk_client_id), "http://placeholder.com")
+    fun provideVkSocialAction(activity: Activity): SocialLoginAction = VkLoginActionImpl(activity)
 
     @Provides
     @IntoMap
@@ -60,6 +61,11 @@ class SocialLoginModule {
     @IntoMap
     @SocialKey(SocialType.GITHUB)
     fun provideGithubSocialAction(activity: Activity): SocialLoginAction = GithubLoginActionImpl(activity, activity.getString(R.string.github_client_id), activity.getString(R.string.github_redirect_url))
+
+    @Provides
+    @IntoMap
+    @SocialKey(SocialType.AMAZON)
+    fun provideAmazonSocialAction(activity: Activity): SocialLoginAction = AmazonLoginActionImpl(activity, activity.getString(R.string.amazon_app_id), activity.getString(R.string.amazon_redirect_url))
 
     @Provides
     fun provideSocialLoginManager(socialLoginActions: Map<SocialType, @JvmSuppressWildcards SocialLoginAction>): SocialLoginManager =

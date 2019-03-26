@@ -13,11 +13,9 @@ class LinkedInLoginActionImpl(
     activity: Activity,
     clientId: String,
     redirectUrl: String
-) : BaseWebSocialLoginAction(activity, SocialType.LINKED_IN, LINKED_IN_REQUEST_CODE) {
+) : BaseWebSocialLoginAction(activity) {
 
-    companion object {
-        private const val LINKED_IN_REQUEST_CODE = 10004
-    }
+    override val socialType: SocialType = SocialType.LINKED_IN
 
     override val url = "https://www.linkedin.com/oauth/v2/authorization" +
         "?response_type=code" +

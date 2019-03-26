@@ -60,7 +60,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
 
     //socials
-    implementation project(':social-login-core')
+    implementation project(':core')
     implementation project(':facebook-explicit')
     implementation project(':facebook-implicit')
     implementation project(':google-explicit')
@@ -68,7 +68,8 @@ dependencies {
     implementation project(':instagram-implicit')
     implementation project(':linkedin-explicit')
     implementation project(':twitter-implicit')
-    implementation project(':vkontakte-explicit')
-    implementation project(':vkontakte-implicit')
+    implementation project(':vk-explicit')
+    implementation project(':vk-implicit')
     implementation project(':github-explicit')
+    implementation project(':amazon-explicit')
 }

@@ -14,11 +14,9 @@ class InstagramLoginActionImpl(
     clientId: String,
     redirectUrl: String,
     scope: String = ""
-) : BaseWebSocialLoginAction(activity, SocialType.INSTAGRAM, INSTAGRAM_REQUEST_CODE) {
+) : BaseWebSocialLoginAction(activity) {
 
-    companion object {
-        private const val INSTAGRAM_REQUEST_CODE = 10001
-    }
+    override val socialType: SocialType = SocialType.INSTAGRAM
 
     override var url = "https://instagram.com/oauth/authorize/" +
         "?client_id=$clientId" +

@@ -5,7 +5,7 @@ import com.andrew.social.login.core.initializer.Initializer
 import com.andrew.social.login.core.initializer.SocialLoginInitializer
 import com.andrew.social.login.facebook.implicit.FacebookInitializer
 import com.andrew.social.login.twitter.implicit.TwitterInitializer
-import com.andrew.social.login.vkontakte.implicit.VkontakteInitializer
+import com.andrew.social.login.vk.implicit.VkInitializer
 import com.andrew.socialactionssample.di.qualifier.SocialKey
 import dagger.Module
 import dagger.Provides
@@ -25,8 +25,8 @@ class SocialInitModule {
 
     @Provides
     @IntoMap
-    @SocialKey(SocialType.VKONTAKTE)
-    fun provideVkInitializer(): Initializer = VkontakteInitializer()
+    @SocialKey(SocialType.VK)
+    fun provideVkInitializer(): Initializer = VkInitializer()
 
     @Provides
     @IntoMap

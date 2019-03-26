@@ -18,13 +18,14 @@ enum class SocialViewType(
     val socialType: SocialType,
     @DrawableRes val drawableRes: Int
 ) {
-    VK(SocialType.VKONTAKTE, R.drawable.logo_vk),
+    VK(SocialType.VK, R.drawable.logo_vk),
     TWITTER(SocialType.TWITTER, R.drawable.logo_twitter),
     INSTAGRAM(SocialType.INSTAGRAM, R.drawable.logo_instagram),
     FACEBOOK(SocialType.FACEBOOK, R.drawable.logo_facebook),
     GOOGLE(SocialType.GOOGLE, R.drawable.logo_google),
     LINKED_IN(SocialType.LINKED_IN, R.drawable.logo_linked_in),
-    GITHUB(SocialType.GITHUB, R.drawable.logo_github);
+    GITHUB(SocialType.GITHUB, R.drawable.logo_github),
+    AMAZON(SocialType.AMAZON, R.drawable.logo_amazon);
 
     companion object {
         fun resolve(socialType: SocialType): SocialViewType? = values().firstOrNull { it.socialType == socialType }

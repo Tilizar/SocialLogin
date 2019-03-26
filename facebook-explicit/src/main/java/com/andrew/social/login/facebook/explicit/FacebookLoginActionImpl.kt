@@ -15,11 +15,9 @@ class FacebookLoginActionImpl(
     clientId: String,
     redirectUrl: String,
     scope: String = ""
-) : BaseWebSocialLoginAction(activity, SocialType.FACEBOOK, FACEBOOK_REQUEST_CODE) {
+) : BaseWebSocialLoginAction(activity) {
 
-    companion object {
-        private const val FACEBOOK_REQUEST_CODE = 10002
-    }
+    override val socialType: SocialType = SocialType.FACEBOOK
 
     override val url = "https://www.facebook.com/v3.2/dialog/oauth?" +
         "client_id=$clientId" +
