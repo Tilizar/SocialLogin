@@ -17,9 +17,9 @@ class MainActivityModule : ActivityModule<MainActivity>() {
 
     @PerActivity
     @Provides
-    fun provideAdapter(activity: MainActivity) = SocialsAdapter(activity)
+    fun provideAdapter(activity: MainActivity): SocialsAdapter = SocialsAdapter(activity)
 
     @PerActivity
     @Provides
-    fun provideLayoutManager(activity: MainActivity) = LinearLayoutManager(activity)
+    fun provideLayoutManager(activity: MainActivity): LinearLayoutManager = LinearLayoutManager(activity)
 }

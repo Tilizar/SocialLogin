@@ -28,7 +28,8 @@ class SocialLoginManager(private val socialLoginActions: Map<SocialType, SocialL
         socialLoginActions[socialType]?.login()
     }
 
-    fun logout() {
+    @Suppress("DEPRECATION")
+    fun logoutAll() {
         socialLoginActions.forEach { it.value.logout() }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             CookieManager.getInstance().removeAllCookies(null)

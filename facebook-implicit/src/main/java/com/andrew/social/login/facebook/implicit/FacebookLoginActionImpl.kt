@@ -16,13 +16,15 @@ import com.facebook.login.LoginResult
  * Created by Andrew on 24.06.2018
  */
 
-class FacebookLoginActionImpl(activity: Activity,
-                              private val readPermissions: List<String> = emptyList()) : SocialLoginAction(activity) {
+class FacebookLoginActionImpl(
+    activity: Activity,
+    private val readPermissions: List<String> = emptyList()
+) : SocialLoginAction(activity) {
 
-    private val callbackManager = CallbackManager.Factory.create()
+    private val callbackManager by lazy { CallbackManager.Factory.create() }
 
-    init {
-        LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+    private val facebookCallback by lazy {
+        object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
                 result?.accessToken?.token?.let {
                     callback?.onSuccess(SocialType.FACEBOOK, ResponseType.TOKEN, it)
@@ -36,7 +38,11 @@ class FacebookLoginActionImpl(activity: Activity,
             override fun onError(error: FacebookException?) {
                 callback?.onError(SocialLoginException(SocialType.FACEBOOK))
             }
-        })
+        }
+    }
+
+    init {
+        LoginManager.getInstance().registerCallback(callbackManager, facebookCallback)
     }
 
     override fun login() {

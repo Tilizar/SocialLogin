@@ -34,6 +34,6 @@ class SocialInitModule {
     fun provideTwitterInitializer(): Initializer = TwitterInitializer()
 
     @Provides
-    fun provideSocialLoginInitializer(socialsToInit: Map<SocialType, @JvmSuppressWildcards Initializer>) =
+    fun provideSocialLoginInitializer(socialsToInit: Map<SocialType, @JvmSuppressWildcards Initializer>): SocialLoginInitializer =
             SocialLoginInitializer(socialsToInit)
 }

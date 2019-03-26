@@ -9,6 +9,5 @@ import android.view.ViewGroup
  * Created by Andrew on 17.06.2018.
  */
 
-fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
-    return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
-}
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View =
+    LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)

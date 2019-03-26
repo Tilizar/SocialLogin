@@ -15,6 +15,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+import javax.inject.Provider
 
 /**
  * Created by Andrew on 16.06.2018.
@@ -33,11 +34,13 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
     lateinit var layoutManager: LinearLayoutManager
 
     @Inject
+    lateinit var presenterProvider: Provider<MainPresenter>
+
     @InjectPresenter
     lateinit var presenter: MainPresenter
 
     @ProvidePresenter
-    fun providePresenter() = presenter
+    fun providePresenter(): MainPresenter = presenterProvider.get()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,17 +67,15 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
     }
 
     override fun logoutClick(socialType: SocialType) {
-        loginManager.logout()
+        loginManager.logoutAll()
         adapter.updateSocial(socialType, "")
     }
 
     private fun setupRecycler() {
-        recycler_socials.apply {
+        with(recycler_socials) {
             layoutManager = this@MainActivity.layoutManager
             adapter = this@MainActivity.adapter
-            if (itemAnimator is SimpleItemAnimator) {
-                (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
-            }
+            (itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
         }
     }
 }

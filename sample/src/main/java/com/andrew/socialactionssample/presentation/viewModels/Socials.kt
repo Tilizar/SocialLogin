@@ -8,12 +8,16 @@ import com.andrew.socialactionssample.R
  * Created by Andrew on 17.06.2018.
  */
 
-data class SocialModel(var socialType: SocialType,
-                       var socialViewType: SocialViewType? = SocialViewType.getSocialViewType(socialType),
-                       var code: String = "")
+data class SocialModel(
+    val socialType: SocialType,
+    val socialViewType: SocialViewType? = SocialViewType.resolve(socialType),
+    var code: String = ""
+)
 
-enum class SocialViewType(var socialType: SocialType,
-                          @DrawableRes var drawableRes: Int) {
+enum class SocialViewType(
+    val socialType: SocialType,
+    @DrawableRes val drawableRes: Int
+) {
     VK(SocialType.VKONTAKTE, R.drawable.logo_vk),
     TWITTER(SocialType.TWITTER, R.drawable.logo_twitter),
     INSTAGRAM(SocialType.INSTAGRAM, R.drawable.logo_instagram),
@@ -23,6 +27,6 @@ enum class SocialViewType(var socialType: SocialType,
     GITHUB(SocialType.GITHUB, R.drawable.logo_github);
 
     companion object {
-        fun getSocialViewType(socialType: SocialType) = values().firstOrNull { it.socialType == socialType }
+        fun resolve(socialType: SocialType): SocialViewType? = values().firstOrNull { it.socialType == socialType }
     }
 }

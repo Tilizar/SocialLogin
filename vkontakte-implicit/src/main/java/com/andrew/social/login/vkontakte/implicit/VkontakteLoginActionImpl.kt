@@ -6,11 +6,9 @@ import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.core.exception.SocialLoginException
-import com.vk.sdk.VKAccessToken
-import com.vk.sdk.VKCallback
-import com.vk.sdk.VKSdk
-import com.vk.sdk.VKServiceActivity
-import com.vk.sdk.api.VKError
+import com.vk.api.sdk.VK
+import com.vk.api.sdk.auth.VKAccessToken
+import com.vk.api.sdk.auth.VKAuthCallback
 
 /**
  * Created by Andrew on 16.06.2018.
@@ -18,26 +16,27 @@ import com.vk.sdk.api.VKError
 
 class VkontakteLoginActionImpl(activity: Activity) : SocialLoginAction(activity) {
 
+    private val vkCallback by lazy {
+        object : VKAuthCallback {
+            override fun onLogin(token: VKAccessToken) {
+                callback?.onSuccess(SocialType.VKONTAKTE, ResponseType.TOKEN, token.accessToken)
+            }
+
+            override fun onLoginFailed(errorCode: Int) {
+                callback?.onError(SocialLoginException(SocialType.VKONTAKTE))
+            }
+        }
+    }
+
     override fun login() {
-        VKSdk.login(activity)
+        VK.login(activity)
     }
 
     override fun logout() {
-        VKSdk.logout()
+        VK.logout()
     }
 
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
-        if (requestCode != VKServiceActivity.VKServiceType.Authorization.outerCode) return
-        VKSdk.onActivityResult(requestCode, resultCode, intent, object : VKCallback<VKAccessToken> {
-            override fun onResult(res: VKAccessToken?) {
-                res?.accessToken?.let {
-                    callback?.onSuccess(SocialType.VKONTAKTE, ResponseType.TOKEN, it)
-                }
-            }
-
-            override fun onError(error: VKError?) {
-                callback?.onError(SocialLoginException(SocialType.VKONTAKTE))
-            }
-        })
+        VK.onActivityResult(requestCode, resultCode, intent, vkCallback)
     }
 }

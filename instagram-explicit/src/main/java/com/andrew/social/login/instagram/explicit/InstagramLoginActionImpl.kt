@@ -9,18 +9,20 @@ import com.andrew.social.login.core.web.BaseWebSocialLoginAction
  * Created by Andrew on 24.06.2018
  */
 
-class InstagramLoginActionImpl(activity: Activity,
-                               clientId: String,
-                               redirectUrl: String,
-                               scope: String = "") : BaseWebSocialLoginAction(activity, SocialType.INSTAGRAM, INSTAGRAM_REQUEST_CODE) {
+class InstagramLoginActionImpl(
+    activity: Activity,
+    clientId: String,
+    redirectUrl: String,
+    scope: String = ""
+) : BaseWebSocialLoginAction(activity, SocialType.INSTAGRAM, INSTAGRAM_REQUEST_CODE) {
 
     companion object {
         private const val INSTAGRAM_REQUEST_CODE = 10001
     }
 
     override var url = "https://instagram.com/oauth/authorize/" +
-            "?client_id=$clientId" +
-            "&redirect_uri=$redirectUrl" +
-            "&response_type=code" +
-            if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
+        "?client_id=$clientId" +
+        "&redirect_uri=$redirectUrl" +
+        "&response_type=code" +
+        if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
 }

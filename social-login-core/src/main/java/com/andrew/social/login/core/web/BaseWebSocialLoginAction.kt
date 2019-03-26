@@ -9,10 +9,12 @@ import com.andrew.social.login.core.exception.SocialLoginException
 import com.andrew.social.login.core.web.WebActivityStarter.BUNDLE_CODE
 
 
-abstract class BaseWebSocialLoginAction(activity: Activity,
-                                        private val socialType: SocialType,
-                                        private val socialRequestCode: Int,
-                                        private val responseType: ResponseType = ResponseType.SERVER_CODE) : SocialLoginAction(activity) {
+abstract class BaseWebSocialLoginAction(
+    activity: Activity,
+    private val socialType: SocialType,
+    private val socialRequestCode: Int,
+    private val responseType: ResponseType = ResponseType.SERVER_CODE
+) : SocialLoginAction(activity) {
 
     abstract val url: String
 
@@ -22,7 +24,6 @@ abstract class BaseWebSocialLoginAction(activity: Activity,
 
     override fun handleResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         if (requestCode != socialRequestCode) return
-
         if (resultCode == Activity.RESULT_OK) {
             intent?.extras?.getString(BUNDLE_CODE)?.let { callback?.onSuccess(socialType, responseType, it) }
         } else if (resultCode == Activity.RESULT_CANCELED) {

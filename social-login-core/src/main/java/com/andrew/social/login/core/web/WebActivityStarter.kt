@@ -24,22 +24,20 @@ object WebActivityStarter {
         loginActivity = clazz
     }
 
-    fun openLoginActivity(activity: Activity,
-                          requestCode: Int,
-                          url: String,
-                          redirectUrl: String = "",
-                          socialType: SocialType,
-                          responseType: ResponseType) {
+    fun openLoginActivity(
+        activity: Activity,
+        requestCode: Int,
+        url: String,
+        redirectUrl: String = "",
+        socialType: SocialType,
+        responseType: ResponseType
+    ) {
 
-        val clazz = loginActivity?.let {
-            it
-        } ?: WebViewLoginActivity::class.java
+        val clazz = loginActivity ?: WebViewLoginActivity::class.java
 
         val intent = Intent(activity, clazz).apply {
             putExtra(BUNDLE_URL, url)
-            if (!redirectUrl.isEmpty()) {
-                putExtra(BUNDLE_REDIRECT_URL, redirectUrl)
-            }
+            if (!redirectUrl.isEmpty()) putExtra(BUNDLE_REDIRECT_URL, redirectUrl)
             putExtra(BUNDLE_SOCIAL_TYPE, socialType)
             putExtra(BUNDLE_RESPONSE_TYPE, responseType)
         }

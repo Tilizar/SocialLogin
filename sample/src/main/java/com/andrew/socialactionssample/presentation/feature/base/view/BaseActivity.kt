@@ -21,7 +21,7 @@ abstract class BaseActivity : MvpAppCompatActivity(), BaseView {
         if (!cls.isAnnotationPresent(Layout::class.java)) {
             throw IllegalArgumentException("Please specify LayoutRes for activity in @Layout annotation")
         }
-        val annotation = cls.getAnnotation(Layout::class.java)
+        val annotation = cls.getAnnotation(Layout::class.java)!!
         setContentView(annotation.layout)
     }
 }

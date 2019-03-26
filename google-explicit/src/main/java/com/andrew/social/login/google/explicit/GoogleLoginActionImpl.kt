@@ -17,9 +17,11 @@ import com.google.android.gms.common.api.Scope
  * Created by Andrew on 28.06.2018
  */
 
-class GoogleLoginActionImpl(activity: Activity,
-                            private val clientId: String,
-                            private val scopes: List<AuthScope> = emptyList()) : SocialLoginAction(activity) {
+class GoogleLoginActionImpl(
+    activity: Activity,
+    private val clientId: String,
+    private val scopes: List<AuthScope> = emptyList()
+) : SocialLoginAction(activity) {
 
     companion object {
         private const val REQUEST_CODE_GOOGLE = 10003
@@ -44,12 +46,12 @@ class GoogleLoginActionImpl(activity: Activity,
 
     override fun logout() {
         googleApi?.apply {
-            if (!isConnected) connect()
-
+            if (!isConnected) return
             Auth.GoogleSignInApi.signOut(googleApi)
-                    .setResultCallback {
-                        googleApi?.disconnect()
-                    }
+                .setResultCallback {
+                    googleApi?.disconnect()
+                    googleApi = null
+                }
         }
     }
 
@@ -75,14 +77,14 @@ class GoogleLoginActionImpl(activity: Activity,
         if (googleApi != null) return
 
         val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestProfile()
-                .requestEmail()
-                .addScopes()
-                .requestIdToken(clientId)
+            .requestProfile()
+            .requestEmail()
+            .addScopes()
+            .requestIdToken(clientId)
 
         googleApi = GoogleApiClient.Builder(activity)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, options.build())
-                .build()
+            .addApi(Auth.GOOGLE_SIGN_IN_API, options.build())
+            .build()
     }
 
     private fun GoogleSignInOptions.Builder.addScopes(): GoogleSignInOptions.Builder {

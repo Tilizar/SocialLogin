@@ -15,10 +15,10 @@ import com.twitter.sdk.android.core.identity.TwitterAuthClient
 
 class TwitterLoginActionImpl(activity: Activity) : SocialLoginAction(activity) {
 
-    private val authClient: TwitterAuthClient = TwitterAuthClient()
+    private val authClient: TwitterAuthClient by lazy { TwitterAuthClient() }
 
-    override fun login() {
-        authClient.authorize(activity, object : Callback<TwitterSession>() {
+    private val twitterCallback: Callback<TwitterSession> by lazy {
+        object : Callback<TwitterSession>() {
             override fun success(result: Result<TwitterSession>?) {
                 result?.data?.authToken?.token?.let {
                     callback?.onSuccess(SocialType.TWITTER, ResponseType.TOKEN, it)
@@ -28,7 +28,11 @@ class TwitterLoginActionImpl(activity: Activity) : SocialLoginAction(activity) {
             override fun failure(exception: TwitterException?) {
                 callback?.onError(SocialLoginException(SocialType.TWITTER))
             }
-        })
+        }
+    }
+
+    override fun login() {
+        authClient.authorize(activity, twitterCallback)
     }
 
     override fun logout() {

@@ -26,11 +26,11 @@ object UrlHandler {
         }
     }
 
-    fun getHandler(socialType: SocialType, responseType: ResponseType) = handlers[parseKey(socialType, responseType)]
+    fun getHandler(socialType: SocialType, responseType: ResponseType): ((String?, BaseWebViewLoginActivity) -> Boolean)? = handlers[parseKey(socialType, responseType)]
 
     fun putHandler(socialType: SocialType, responseType: ResponseType, handler: (String?, BaseWebViewLoginActivity) -> Boolean) {
         handlers[parseKey(socialType, responseType)] = handler
     }
 
-    private fun parseKey(socialType: SocialType, responseType: ResponseType) = socialType.name + "_" + responseType.name
+    private fun parseKey(socialType: SocialType, responseType: ResponseType): String = socialType.name + "_" + responseType.name
 }

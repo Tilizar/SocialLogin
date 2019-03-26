@@ -15,7 +15,9 @@ import javax.inject.Inject
 
 @PerActivity
 @InjectViewState
-class MainPresenter @Inject constructor() : MvpPresenter<MainView>(), SocialLoginCallback {
+class MainPresenter @Inject constructor(
+
+) : MvpPresenter<MainView>(), SocialLoginCallback {
 
     override fun onSuccess(socialType: SocialType, responseType: ResponseType, response: String) {
         viewState.updateToken(socialType, response)
