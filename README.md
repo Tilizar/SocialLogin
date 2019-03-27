@@ -1,6 +1,7 @@
 # Social Login
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/AndrewHeyO/SocialLogin#license)
-[![GitHub version](https://badge.fury.io/gh/AndrewHeyO%2FSocialLogin.svg)](https://github.com/AndrewHeyO/SocialLogin)
+[![GitHub release](https://img.shields.io/github/release/AndrewHeyO/SocialLogin.svg)](https://github.com/AndrewHeyO/SocialLogin)
+
 
 With this library you can easily add authorization via social network in your application
 
@@ -44,16 +45,16 @@ dependencies {
 You can use this library with two ways:
 
 1. If you have only one social network to integrate, you can use this social's Login Action
-2. If you have two or more social networks, you can use [Social Login Manager](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/manager/SocialLoginManager.kt) and map of [Social Login Actions](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/action/SocialLoginAction.kt)
+2. If you have two or more social networks, you can use [Social Login Manager](https://github.com/AndrewHeyO/SocialLogin/blob/master/core/src/main/java/com/andrew/social/login/core/manager/SocialLoginManager.kt) and map of [Social Login Actions](https://github.com/AndrewHeyO/SocialLogin/blob/master/core/src/main/java/com/andrew/social/login/core/action/SocialLoginAction.kt)
 
-You need to define [Social Login Callback](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/action/SocialLoginCallback.kt)
+You need to define [Social Login Callback](https://github.com/AndrewHeyO/SocialLogin/blob/master/core/src/main/java/com/andrew/social/login/core/action/SocialLoginCallback.kt)
 
-_Also if you use several modules that have own initializers, you can use [Social Login Initializer](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/initializer/SocialLoginInitializer.kt)_
+_Also if you use several modules that have own initializers, you can use [Social Login Initializer](https://github.com/AndrewHeyO/SocialLogin/blob/master/core/src/main/java/com/andrew/social/login/core/initializer/SocialLoginInitializer.kt)_
 
 ## Customize web login
 
 Library provides the way to use your own Activity for web login.
-To do that you need to inherite your Activity from [BaseWebViewLoginActivity](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/web/WebViewLoginActivity.kt) and call [WebActivityStarter.setWebLoginActivity()](https://github.com/AndrewHeyO/SocialLogin/blob/master/social-login-core/src/main/java/com/andrew/social/login/core/web/WebActivityStarter.kt#L23) before you login
+To do that you need to inherite your Activity from [BaseWebViewLoginActivity](https://github.com/AndrewHeyO/SocialLogin/blob/master/core/src/main/java/com/andrew/social/login/core/web/WebViewLoginActivity.kt) and call [WebActivityStarter.setWebLoginActivity()](https://github.com/AndrewHeyO/SocialLogin/blob/master/core/src/main/java/com/andrew/social/login/core/web/WebActivityStarter.kt#L23) before you login
 
 ```kotlin
 class CustomWebViewLoginActivity : BaseWebViewLoginActivity() {
