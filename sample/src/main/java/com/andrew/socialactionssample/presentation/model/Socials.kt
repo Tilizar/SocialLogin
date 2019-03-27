@@ -25,7 +25,9 @@ enum class SocialViewType(
     GOOGLE(SocialType.GOOGLE, R.drawable.logo_google),
     LINKED_IN(SocialType.LINKED_IN, R.drawable.logo_linked_in),
     GITHUB(SocialType.GITHUB, R.drawable.logo_github),
-    AMAZON(SocialType.AMAZON, R.drawable.logo_amazon);
+    AMAZON(SocialType.AMAZON, R.drawable.logo_amazon),
+    MICROSOFT(SocialType.MICROSOFT, R.drawable.logo_microsoft),
+    YAHOO(SocialType.YAHOO, R.drawable.logo_yahoo);
 
     companion object {
         fun resolve(socialType: SocialType): SocialViewType? = values().firstOrNull { it.socialType == socialType }

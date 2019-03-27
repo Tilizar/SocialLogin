@@ -33,7 +33,9 @@ class SocialsAdapter(
         SocialModel(SocialType.GOOGLE),
         SocialModel(SocialType.LINKED_IN),
         SocialModel(SocialType.GITHUB),
-        SocialModel(SocialType.AMAZON)
+        SocialModel(SocialType.AMAZON),
+        SocialModel(SocialType.MICROSOFT),
+        SocialModel(SocialType.YAHOO)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SocialViewHolder =

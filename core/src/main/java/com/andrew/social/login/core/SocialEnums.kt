@@ -12,7 +12,9 @@ enum class SocialType {
     GOOGLE,
     LINKED_IN,
     GITHUB,
-    AMAZON
+    AMAZON,
+    MICROSOFT,
+    YAHOO
 }
 
 enum class ResponseType {

@@ -10,8 +10,10 @@ import com.andrew.social.login.github.explicit.GithubLoginActionImpl
 import com.andrew.social.login.google.explicit.GoogleLoginActionImpl
 import com.andrew.social.login.instagram.explicit.InstagramLoginActionImpl
 import com.andrew.social.login.linkedin.explicit.LinkedInLoginActionImpl
+import com.andrew.social.login.microsoft.explicit.MicrosoftLoginActionImpl
 import com.andrew.social.login.twitter.implicit.TwitterLoginActionImpl
 import com.andrew.social.login.vk.implicit.VkLoginActionImpl
+import com.andrew.social.login.yahoo.explicit.YahooLoginActionImpl
 import com.andrew.socialactionssample.R
 import com.andrew.socialactionssample.di.qualifier.SocialKey
 import dagger.Module
@@ -67,6 +69,17 @@ class SocialLoginModule {
     @SocialKey(SocialType.AMAZON)
     //fun provideAmazonSocialAction(activity: FragmentActivity): SocialLoginAction = AmazonLoginActionImpl(activity, activity.getString(R.string.amazon_app_id), activity.getString(R.string.amazon_redirect_url))
     fun provideAmazonSocialAction(activity: FragmentActivity): SocialLoginAction = AmazonLoginActionImpl(activity)
+
+    @Provides
+    @IntoMap
+    @SocialKey(SocialType.MICROSOFT)
+    fun provideMicrosoftSocialAction(activity: FragmentActivity): SocialLoginAction = MicrosoftLoginActionImpl(activity, activity.getString(R.string.microsoft_client_id), activity.getString(R.string.microsoft_redirect_url))
+
+    @Provides
+    @IntoMap
+    @SocialKey(SocialType.YAHOO)
+    fun provideYahooSocialAction(activity: FragmentActivity): SocialLoginAction = YahooLoginActionImpl(activity, activity.getString(R.string.yahoo_client_id), activity.getString(R.string.yahoo_redirect_url))
+
 
     @Provides
     fun provideSocialLoginManager(socialLoginActions: Map<SocialType, @JvmSuppressWildcards SocialLoginAction>): SocialLoginManager =

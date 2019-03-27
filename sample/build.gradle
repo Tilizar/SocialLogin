@@ -72,4 +72,6 @@ dependencies {
     implementation project(':github-explicit')
     implementation project(':amazon-explicit')
     implementation project(':amazon-implicit')
+    implementation project(':microsoft-explicit')
+    implementation project(':yahoo-explicit')
 }
