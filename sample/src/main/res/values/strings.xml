@@ -2,4 +2,7 @@
     <string name="app_name">SocialActionsSample</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+
+    <string name="facebook_app_id">mock</string>
+    <string name="fb_login_protocol_scheme">mock</string>
 </resources>
