@@ -40,7 +40,7 @@ before_script:
 - chmod +x gradlew
 
 script:
-- ./gradlew check
+- ./gradlew clean
 
 deploy:
   provider: script
