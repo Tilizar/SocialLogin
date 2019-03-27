@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="com_vk_sdk_AppId">12345</integer>
+    <string name="vk_client_id">mock</string>
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">mock</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">mock</string>
+
+    <string name="instagram_id">mock</string>
+    <string name="instagram_redirect_url">http://google.com</string>
+
+    <string name="facebook_app_id">mock</string>
+    <string name="fb_login_protocol_scheme">mock</string>
+    <string name="facebook_redirect_url">https://google.com/</string>
+
+    <string name="google_client_id">mock</string>
+
+    <string name="linked_in_client_id">mock</string>
+    <string name="linked_in_redirect_url">https://google.com</string>
+
+    <string name="github_client_id">mock</string>
+    <string name="github_redirect_url">https://google.com</string>
+
+    <string name="amazon_app_id">mock</string>
+    <string name="amazon_redirect_url">https://google.com</string>
+
+    <string name="microsoft_client_id">mock</string>
+    <string name="microsoft_redirect_url">https://google.com</string>
+
+    <string name="yahoo_client_id">mock</string>
+    <string name="yahoo_redirect_url">https://google.com</string>
+</resources>

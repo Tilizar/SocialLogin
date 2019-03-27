@@ -2,7 +2,4 @@
     <string name="app_name">SocialActionsSample</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
-
-    <string name="facebook_app_id">facebook_app_id</string>
-    <string name="fb_login_protocol_scheme">fb_login_protocol_scheme</string>
 </resources>
