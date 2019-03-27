@@ -1,7 +1,10 @@
 package com.andrew.social.login.google.explicit
 
-import android.app.Activity
 import android.content.Intent
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
@@ -18,13 +21,17 @@ import com.google.android.gms.common.api.Scope
  */
 
 class GoogleLoginActionImpl(
-    activity: Activity,
+    activity: FragmentActivity,
     private val clientId: String,
     private val scopes: List<AuthScope> = emptyList()
-) : SocialLoginAction(activity) {
+) : SocialLoginAction(activity), LifecycleObserver {
 
     companion object {
         private const val REQUEST_CODE_GOOGLE = 10003
+    }
+
+    init {
+        activity.lifecycle.addObserver(this)
     }
 
     private var googleApi: GoogleApiClient? = null
@@ -69,7 +76,8 @@ class GoogleLoginActionImpl(
         callback?.onError(SocialLoginException(SocialType.GOOGLE))
     }
 
-    override fun cancelRequest() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun onDestroy() {
         googleApi?.disconnect()
     }
 

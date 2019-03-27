@@ -36,17 +36,6 @@ class SocialLoginManagerTest {
     }
 
     @Test
-    fun disposeLoginCallback() {
-
-        socialLoginManager.disposeLoginCallback()
-
-        verify(socialLoginAction, times(actions.size))
-                .cancelRequest()
-
-        actions.forEach { assertEquals(null, it.value.callback) }
-    }
-
-    @Test
     fun login_haveAction() {
         socialLoginManager.login(SocialType.FACEBOOK)
 

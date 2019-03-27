@@ -1,6 +1,6 @@
-package com.andrew.socialactionssample.presentation.viewModels
+package com.andrew.socialactionssample.presentation.model
 
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 import com.andrew.social.login.core.SocialType
 import com.andrew.socialactionssample.R
 

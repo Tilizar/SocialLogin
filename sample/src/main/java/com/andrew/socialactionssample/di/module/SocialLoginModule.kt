@@ -1,7 +1,7 @@
 package com.andrew.socialactionssample.di.module
 
-import android.app.Activity
-import com.andrew.social.login.amazon.explicit.AmazonLoginActionImpl
+import androidx.fragment.app.FragmentActivity
+import com.andrew.social.login.amazon.implicit.AmazonLoginActionImpl
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.core.manager.SocialLoginManager
@@ -28,44 +28,45 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.VK)
-    //fun provideVkSocialAction(activity: Activity): SocialLoginAction = VkLoginActionImpl(activity, activity.getString(R.string.vk_client_id), "http://placeholder.com")
-    fun provideVkSocialAction(activity: Activity): SocialLoginAction = VkLoginActionImpl(activity)
+    //fun provideVkSocialAction(activity: FragmentActivity): SocialLoginAction = VkLoginActionImpl(activity, activity.getString(R.string.vk_client_id), "http://placeholder.com")
+    fun provideVkSocialAction(activity: FragmentActivity): SocialLoginAction = VkLoginActionImpl(activity)
 
     @Provides
     @IntoMap
     @SocialKey(SocialType.TWITTER)
-    fun provideTwitterSocialAction(activity: Activity): SocialLoginAction = TwitterLoginActionImpl(activity)
+    fun provideTwitterSocialAction(activity: FragmentActivity): SocialLoginAction = TwitterLoginActionImpl(activity)
 
     @Provides
     @IntoMap
     @SocialKey(SocialType.INSTAGRAM)
-    fun provideInstagramSocialAction(activity: Activity): SocialLoginAction = InstagramLoginActionImpl(activity, activity.getString(R.string.instagram_id), activity.getString(R.string.instagram_redirect_url))
+    fun provideInstagramSocialAction(activity: FragmentActivity): SocialLoginAction = InstagramLoginActionImpl(activity, activity.getString(R.string.instagram_id), activity.getString(R.string.instagram_redirect_url))
 
     @Provides
     @IntoMap
     @SocialKey(SocialType.FACEBOOK)
-    //fun provideFacebookSocialAction(activity: Activity): SocialLoginAction = FacebookLoginActionImpl(activity, activity.getString(R.string.facebook_app_id), activity.getString(R.string.facebook_redirect_url))
-    fun provideFacebookSocialAction(activity: Activity): SocialLoginAction = FacebookLoginActionImpl(activity)
+    //fun provideFacebookSocialAction(activity: FragmentActivity): SocialLoginAction = FacebookLoginActionImpl(activity, activity.getString(R.string.facebook_app_id), activity.getString(R.string.facebook_redirect_url))
+    fun provideFacebookSocialAction(activity: FragmentActivity): SocialLoginAction = FacebookLoginActionImpl(activity)
 
     @Provides
     @IntoMap
     @SocialKey(SocialType.GOOGLE)
-    fun provideGooglePlusSocialAction(activity: Activity): SocialLoginAction = GoogleLoginActionImpl(activity, activity.getString(R.string.google_client_id))
+    fun provideGooglePlusSocialAction(activity: FragmentActivity): SocialLoginAction = GoogleLoginActionImpl(activity, activity.getString(R.string.google_client_id))
 
     @Provides
     @IntoMap
     @SocialKey(SocialType.LINKED_IN)
-    fun provideLinkedInSocialAction(activity: Activity): SocialLoginAction = LinkedInLoginActionImpl(activity, activity.getString(R.string.linked_in_client_id), activity.getString(R.string.linked_in_redirect_url))
+    fun provideLinkedInSocialAction(activity: FragmentActivity): SocialLoginAction = LinkedInLoginActionImpl(activity, activity.getString(R.string.linked_in_client_id), activity.getString(R.string.linked_in_redirect_url))
 
     @Provides
     @IntoMap
     @SocialKey(SocialType.GITHUB)
-    fun provideGithubSocialAction(activity: Activity): SocialLoginAction = GithubLoginActionImpl(activity, activity.getString(R.string.github_client_id), activity.getString(R.string.github_redirect_url))
+    fun provideGithubSocialAction(activity: FragmentActivity): SocialLoginAction = GithubLoginActionImpl(activity, activity.getString(R.string.github_client_id), activity.getString(R.string.github_redirect_url))
 
     @Provides
     @IntoMap
     @SocialKey(SocialType.AMAZON)
-    fun provideAmazonSocialAction(activity: Activity): SocialLoginAction = AmazonLoginActionImpl(activity, activity.getString(R.string.amazon_app_id), activity.getString(R.string.amazon_redirect_url))
+    //fun provideAmazonSocialAction(activity: FragmentActivity): SocialLoginAction = AmazonLoginActionImpl(activity, activity.getString(R.string.amazon_app_id), activity.getString(R.string.amazon_redirect_url))
+    fun provideAmazonSocialAction(activity: FragmentActivity): SocialLoginAction = AmazonLoginActionImpl(activity)
 
     @Provides
     fun provideSocialLoginManager(socialLoginActions: Map<SocialType, @JvmSuppressWildcards SocialLoginAction>): SocialLoginManager =

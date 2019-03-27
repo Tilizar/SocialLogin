@@ -11,17 +11,12 @@ import com.andrew.social.login.core.action.SocialLoginCallback
  * Created by Andrew on 16.06.2018.
  */
 
-class SocialLoginManager(private val socialLoginActions: Map<SocialType, SocialLoginAction>) {
+class SocialLoginManager(
+    private val socialLoginActions: Map<SocialType, SocialLoginAction>
+) {
 
     fun observeLoginCallback(callbackSocial: SocialLoginCallback) {
         socialLoginActions.forEach { it.value.callback = callbackSocial }
-    }
-
-    fun disposeLoginCallback() {
-        socialLoginActions.forEach {
-            it.value.cancelRequest()
-            it.value.callback = null
-        }
     }
 
     fun login(socialType: SocialType) {

@@ -1,6 +1,6 @@
 package com.andrew.socialactionssample.presentation.feature.main.di
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.andrew.socialactionssample.di.PerActivity
 import com.andrew.socialactionssample.presentation.feature.base.di.ActivityModule
 import com.andrew.socialactionssample.presentation.feature.main.adapter.SocialsAdapter

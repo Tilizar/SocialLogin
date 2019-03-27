@@ -1,11 +1,10 @@
 package com.andrew.socialactionssample.presentation.feature.main.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.andrew.social.login.core.SocialType
 import com.andrew.socialactionssample.R
-import com.andrew.socialactionssample.presentation.viewModels.SocialModel
+import com.andrew.socialactionssample.presentation.model.SocialModel
 import com.andrew.socialactionssample.utils.inflate
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.item_social.view.*
 
 class SocialsAdapter(
     private val socialsClick: SocialClickListener
-) : RecyclerView.Adapter<SocialsAdapter.SocialViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<SocialsAdapter.SocialViewHolder>() {
 
     interface SocialClickListener {
         fun loginClick(socialType: SocialType)
@@ -58,7 +57,7 @@ class SocialsAdapter(
     class SocialViewHolder(
         override val containerView: View,
         private val socialsClick: SocialClickListener
-    ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+    ) : androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         fun bind(social: SocialModel) {
             with(itemView) {

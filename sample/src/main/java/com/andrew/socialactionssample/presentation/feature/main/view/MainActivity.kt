@@ -2,8 +2,6 @@ package com.andrew.socialactionssample.presentation.feature.main.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.SimpleItemAnimator
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.manager.SocialLoginManager
 import com.andrew.socialactionssample.R
@@ -31,7 +29,7 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
     lateinit var adapter: SocialsAdapter
 
     @Inject
-    lateinit var layoutManager: LinearLayoutManager
+    lateinit var layoutManager: androidx.recyclerview.widget.LinearLayoutManager
 
     @Inject
     lateinit var presenterProvider: Provider<MainPresenter>
@@ -48,18 +46,13 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
         setupRecycler()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        loginManager.disposeLoginCallback()
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         loginManager.handleResult(requestCode, resultCode, data)
     }
 
     override fun updateToken(socialType: SocialType, code: String) {
-        adapter.updateSocial(socialType, code)
+        runOnUiThread { adapter.updateSocial(socialType, code) }
     }
 
     override fun loginClick(socialType: SocialType) {
@@ -75,7 +68,7 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
         with(recycler_socials) {
             layoutManager = this@MainActivity.layoutManager
             adapter = this@MainActivity.adapter
-            (itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
+            (itemAnimator as? androidx.recyclerview.widget.SimpleItemAnimator)?.supportsChangeAnimations = false
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.andrew.socialactionssample.presentation.feature.base.di
 
-import android.app.Activity
+import androidx.fragment.app.FragmentActivity
 import dagger.Module
 import dagger.Provides
 
@@ -9,8 +9,8 @@ import dagger.Provides
  */
 
 @Module
-abstract class ActivityModule <in CurrentActivity : Activity> {
+abstract class ActivityModule <in CurrentActivity : FragmentActivity> {
 
     @Provides
-    fun provideActivity(activity: CurrentActivity): Activity = activity
+    fun provideActivity(activity: CurrentActivity): FragmentActivity = activity
 }

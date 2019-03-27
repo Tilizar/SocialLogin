@@ -1,4 +1,4 @@
-include ':sample', ':github-explicit', ':amazon-explicit',
+include ':sample', ':github-explicit', ':amazon-explicit', ':amazon-implicit',
         ':facebook-implicit',
         ':vk-implicit',
         ':instagram-implicit',

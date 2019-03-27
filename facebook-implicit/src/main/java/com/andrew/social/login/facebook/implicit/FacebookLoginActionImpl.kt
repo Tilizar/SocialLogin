@@ -1,7 +1,10 @@
 package com.andrew.social.login.facebook.implicit
 
-import android.app.Activity
 import android.content.Intent
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
@@ -17,9 +20,9 @@ import com.facebook.login.LoginResult
  */
 
 class FacebookLoginActionImpl(
-    activity: Activity,
+    activity: FragmentActivity,
     private val readPermissions: List<String> = emptyList()
-) : SocialLoginAction(activity) {
+) : SocialLoginAction(activity), LifecycleObserver {
 
     private val callbackManager by lazy { CallbackManager.Factory.create() }
 
@@ -42,6 +45,7 @@ class FacebookLoginActionImpl(
     }
 
     init {
+        activity.lifecycle.addObserver(this)
         LoginManager.getInstance().registerCallback(callbackManager, facebookCallback)
     }
 
@@ -57,7 +61,8 @@ class FacebookLoginActionImpl(
         callbackManager.onActivityResult(requestCode, resultCode, intent)
     }
 
-    override fun cancelRequest() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun onDestroy() {
         LoginManager.getInstance().unregisterCallback(callbackManager)
     }
 }
