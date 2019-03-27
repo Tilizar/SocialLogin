@@ -37,21 +37,22 @@ script:
 
 deploy:
   provider: script
-  script: ./gradlew :clean
-  :amazon-explicit:assembleRelease :amazon-explicit:bintrayUpload
-  :amazon-implicit:assembleRelease :amazon-implicit:bintrayUpload
-  :facebook-explicit:assembleRelease :facebook-explicit:bintrayUpload
-  :facebook-implicit:assembleRelease :facebook-implicit:bintrayUpload
-  :github-explicit:assembleRelease :github-explicit:bintrayUpload
-  :google-explicit:assembleRelease :google-explicit:bintrayUpload
-  :instagram-explicit:assembleRelease :instagram-explicit:bintrayUpload
-  :instagram-implicit:assembleRelease :instagram-implicit:bintrayUpload
-  :linkedin-explicit:assembleRelease :linkedin-explicit:bintrayUpload
-  :microsoft-explicit:assembleRelease :microsoft-explicit:bintrayUpload
-  :twitter-implicit:assembleRelease :twitter-implicit:bintrayUpload
-  :vk-explicit:assembleRelease :vk-explicit:bintrayUpload
-  :vk-implicit:assembleRelease :vk-implicit:bintrayUpload
-  :yahoo-explicit:assembleRelease :yahoo-explicit:bintrayUpload
+  script:
+- ./gradlew :clean
+- ./gradlew :amazon-explicit:assembleRelease :amazon-explicit:bintrayUpload
+- ./gradlew :amazon-implicit:assembleRelease :amazon-implicit:bintrayUpload
+- ./gradlew :facebook-explicit:assembleRelease :facebook-explicit:bintrayUpload
+- ./gradlew :facebook-implicit:assembleRelease :facebook-implicit:bintrayUpload
+- ./gradlew :github-explicit:assembleRelease :github-explicit:bintrayUpload
+- ./gradlew :google-explicit:assembleRelease :google-explicit:bintrayUpload
+- ./gradlew :instagram-explicit:assembleRelease :instagram-explicit:bintrayUpload
+- ./gradlew :instagram-implicit:assembleRelease :instagram-implicit:bintrayUpload
+- ./gradlew :linkedin-explicit:assembleRelease :linkedin-explicit:bintrayUpload
+- ./gradlew :microsoft-explicit:assembleRelease :microsoft-explicit:bintrayUpload
+- ./gradlew :twitter-implicit:assembleRelease :twitter-implicit:bintrayUpload
+- ./gradlew :vk-explicit:assembleRelease :vk-explicit:bintrayUpload
+- ./gradlew :vk-implicit:assembleRelease :vk-implicit:bintrayUpload
+- ./gradlew :yahoo-explicit:assembleRelease :yahoo-explicit:bintrayUpload
   skip_cleanup: true
   dry-run: false
   on:
