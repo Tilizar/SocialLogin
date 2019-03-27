@@ -39,6 +39,9 @@ cache:
 before_script:
 - chmod +x gradlew
 
+script:
+- ./gradlew check
+
 deploy:
   provider: script
   script: ./gradlew :clean
