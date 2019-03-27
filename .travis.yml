@@ -39,28 +39,24 @@ cache:
 before_script:
 - chmod +x gradlew
 
-script:
-- ./gradlew clean build
-- ./gradlew test
-
 deploy:
   provider: script
-  script: ./gradlew :clean :build
-    :core:assembleRelease :core:bintrayUpload
-    :amazon-explicit:assembleRelease :amazon-explicit:bintrayUpload
-    :amazon-implicit:assembleRelease :amazon-implicit:bintrayUpload
-    :facebook-explicit:assembleRelease :facebook-explicit:bintrayUpload
-    :facebook-implicit:assembleRelease :facebook-implicit:bintrayUpload
-    :github-explicit:assembleRelease :github-explicit:bintrayUpload
-    :google-explicit:assembleRelease :google-explicit:bintrayUpload
-    :instagram-explicit:assembleRelease :instagram-explicit:bintrayUpload
-    :instagram-implicit:assembleRelease :instagram-implicit:bintrayUpload
-    :linkedin-explicit:assembleRelease :linkedin-explicit:bintrayUpload
-    :microsoft-explicit:assembleRelease :microsoft-explicit:bintrayUpload
-    :twitter-implicit:assembleRelease :twitter-implicit:bintrayUpload
-    :vk-explicit:assembleRelease :vk-explicit:bintrayUpload
-    :vk-implicit:assembleRelease :vk-implicit:bintrayUpload
-    :yahoo-explicit:assembleRelease :yahoo-explicit:bintrayUpload
+  script: ./gradlew :clean
+     :core:bintrayUpload
+     :amazon-explicit:bintrayUpload
+     :amazon-implicit:bintrayUpload
+     :facebook-explicit:bintrayUpload
+     :facebook-implicit:bintrayUpload
+     :github-explicit:bintrayUpload
+     :google-explicit:bintrayUpload
+     :instagram-explicit:bintrayUpload
+     :instagram-implicit:bintrayUpload
+     :linkedin-explicit:bintrayUpload
+     :microsoft-explicit:bintrayUpload
+     :twitter-implicit:bintrayUpload
+     :vk-explicit:bintrayUpload
+     :vk-implicit:bintrayUpload
+     :yahoo-explicit:bintrayUpload
   skip_cleanup: true
   dry-run: false
   on:
