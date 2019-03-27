@@ -2,8 +2,6 @@ package com.andrew.socialactionssample.presentation.feature.main.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.SimpleItemAnimator
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.manager.SocialLoginManager
 import com.andrew.socialactionssample.R
@@ -15,6 +13,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+import javax.inject.Provider
 
 /**
  * Created by Andrew on 16.06.2018.
@@ -30,24 +29,21 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
     lateinit var adapter: SocialsAdapter
 
     @Inject
-    lateinit var layoutManager: LinearLayoutManager
+    lateinit var layoutManager: androidx.recyclerview.widget.LinearLayoutManager
 
     @Inject
+    lateinit var presenterProvider: Provider<MainPresenter>
+
     @InjectPresenter
     lateinit var presenter: MainPresenter
 
     @ProvidePresenter
-    fun providePresenter() = presenter
+    fun providePresenter(): MainPresenter = presenterProvider.get()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginManager.observeLoginCallback(presenter)
         setupRecycler()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        loginManager.disposeLoginCallback()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -56,7 +52,7 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
     }
 
     override fun updateToken(socialType: SocialType, code: String) {
-        adapter.updateSocial(socialType, code)
+        runOnUiThread { adapter.updateSocial(socialType, code) }
     }
 
     override fun loginClick(socialType: SocialType) {
@@ -64,17 +60,15 @@ class MainActivity : BaseActivity(), MainView, SocialsAdapter.SocialClickListene
     }
 
     override fun logoutClick(socialType: SocialType) {
-        loginManager.logout()
+        loginManager.logoutAll()
         adapter.updateSocial(socialType, "")
     }
 
     private fun setupRecycler() {
-        recycler_socials.apply {
+        with(recycler_socials) {
             layoutManager = this@MainActivity.layoutManager
             adapter = this@MainActivity.adapter
-            if (itemAnimator is SimpleItemAnimator) {
-                (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
-            }
+            (itemAnimator as? androidx.recyclerview.widget.SimpleItemAnimator)?.supportsChangeAnimations = false
         }
     }
 }

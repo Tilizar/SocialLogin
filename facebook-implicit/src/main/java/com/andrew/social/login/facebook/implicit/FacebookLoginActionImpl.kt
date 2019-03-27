@@ -1,7 +1,10 @@
 package com.andrew.social.login.facebook.implicit
 
-import android.app.Activity
 import android.content.Intent
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
@@ -16,13 +19,15 @@ import com.facebook.login.LoginResult
  * Created by Andrew on 24.06.2018
  */
 
-class FacebookLoginActionImpl(activity: Activity,
-                              private val readPermissions: List<String> = emptyList()) : SocialLoginAction(activity) {
+class FacebookLoginActionImpl(
+    activity: FragmentActivity,
+    private val readPermissions: List<String> = emptyList()
+) : SocialLoginAction(activity), LifecycleObserver {
 
-    private val callbackManager = CallbackManager.Factory.create()
+    private val callbackManager by lazy { CallbackManager.Factory.create() }
 
-    init {
-        LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+    private val facebookCallback by lazy {
+        object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
                 result?.accessToken?.token?.let {
                     callback?.onSuccess(SocialType.FACEBOOK, ResponseType.TOKEN, it)
@@ -36,7 +41,12 @@ class FacebookLoginActionImpl(activity: Activity,
             override fun onError(error: FacebookException?) {
                 callback?.onError(SocialLoginException(SocialType.FACEBOOK))
             }
-        })
+        }
+    }
+
+    init {
+        activity.lifecycle.addObserver(this)
+        LoginManager.getInstance().registerCallback(callbackManager, facebookCallback)
     }
 
     override fun login() {
@@ -51,7 +61,8 @@ class FacebookLoginActionImpl(activity: Activity,
         callbackManager.onActivityResult(requestCode, resultCode, intent)
     }
 
-    override fun cancelRequest() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun onDestroy() {
         LoginManager.getInstance().unregisterCallback(callbackManager)
     }
 }

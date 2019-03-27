@@ -1,0 +1,19 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+}
+
+dependencies {
+    implementation project(':core')
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.21'
+}
+
+ext {
+    bintrayName = 'yahoo-explicit'
+    artifact = 'yahoo-explicit'
+    libraryDescription = 'Social Login - yahoo-explicit'
+}
+
+apply from: '../publish.gradle'

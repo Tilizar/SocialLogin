@@ -50,4 +50,4 @@ gen-external-apklibs
 
 # Api Keys
 sample/src/main/res/values/api-keys.xml
-
+sample/src/main/assets/api_key.txt

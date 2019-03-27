@@ -21,5 +21,4 @@ interface ApplicationComponent : AndroidInjector<SocialActionsApp> {
 
     @Component.Builder
     abstract class Builder : AndroidInjector.Builder<SocialActionsApp>()
-
 }

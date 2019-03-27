@@ -27,7 +27,7 @@ buildscript {
 
 ```gradle
 dependencies {
-    implementation 'com.andrew.social.login:social-login-core:{latest-version}'
+    implementation 'com.andrew.social.login:core:{latest-version}'
 }
 ```
 
@@ -76,35 +76,12 @@ class CustomWebViewLoginActivity : BaseWebViewLoginActivity() {
 
 For more information check [Wiki](https://github.com/AndrewHeyO/SocialLogin/wiki)
 
-## Progress
-
-1) - [X] VKontakte
-2) - [X] Twitter
-3) - [X] Instagram
-4) - [X] Facebook
-5) - [X] Google
-6) - [X] LinkedIn
-7) - [X] Github
-8) - [ ] Amazon
-9) - [ ] Pinterest
-10) - [ ] SoundCloud
-11) - [ ] Odnoklassniki
-12) - [ ] Tumblr
-13) - [ ] Steam
-14) - [ ] Windows Live
-15) - [ ] Reddit
-16) - [ ] Twitch
-17) - [ ] PayPal
-18) - [ ] Mail.ru
-19) - [ ] Yahoo!
-20) - [ ] Wordpress
-
 ## License
 
 ```
 MIT License
 
-Copyright (c) 2018 Andrey Matyushin
+Copyright (c) 2019 Andrey Matyushin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

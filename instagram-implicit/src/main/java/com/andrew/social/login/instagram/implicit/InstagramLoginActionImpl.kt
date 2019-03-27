@@ -13,10 +13,14 @@ import com.andrew.social.login.core.web.WebActivityStarter.BUNDLE_REDIRECT_URL
  * Created by Andrew on 24.06.2018
  */
 
-class InstagramLoginActionImpl(activity: Activity,
-                               clientId: String,
-                               private val redirectUrl: String,
-                               scope: String = "") : BaseWebSocialLoginAction(activity, SocialType.INSTAGRAM, INSTAGRAM_REQUEST_CODE, ResponseType.TOKEN) {
+class InstagramLoginActionImpl(
+    activity: Activity,
+    clientId: String,
+    private val redirectUrl: String,
+    scope: String = ""
+) : BaseWebSocialLoginAction(activity, ResponseType.TOKEN) {
+
+    override val socialType: SocialType = SocialType.INSTAGRAM
 
     init {
         UrlHandler.putHandler(SocialType.INSTAGRAM, ResponseType.TOKEN) { url, webActivity ->
@@ -39,19 +43,17 @@ class InstagramLoginActionImpl(activity: Activity,
     }
 
     companion object {
-        private const val INSTAGRAM_REQUEST_CODE = 10001
-
         const val RESPONSE_TOKEN = "access_token"
         const val RESPONSE_ERROR = "error"
     }
 
     override var url = "https://instagram.com/oauth/authorize/" +
-            "?client_id=$clientId" +
-            "&redirect_uri=$redirectUrl" +
-            "&response_type=token" +
-            if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
+        "?client_id=$clientId" +
+        "&redirect_uri=$redirectUrl" +
+        "&response_type=token" +
+        if (!TextUtils.isEmpty(scope)) "&scope=$scope" else ""
 
     override fun login() {
-        WebActivityStarter.openLoginActivity(activity, INSTAGRAM_REQUEST_CODE, url, redirectUrl, SocialType.INSTAGRAM, ResponseType.TOKEN)
+        WebActivityStarter.openLoginActivity(activity, requestCode, url, redirectUrl, SocialType.INSTAGRAM, ResponseType.TOKEN)
     }
 }

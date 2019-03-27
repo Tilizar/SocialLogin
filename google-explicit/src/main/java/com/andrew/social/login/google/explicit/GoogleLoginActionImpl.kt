@@ -1,7 +1,10 @@
 package com.andrew.social.login.google.explicit
 
-import android.app.Activity
 import android.content.Intent
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.andrew.social.login.core.ResponseType
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
@@ -17,12 +20,18 @@ import com.google.android.gms.common.api.Scope
  * Created by Andrew on 28.06.2018
  */
 
-class GoogleLoginActionImpl(activity: Activity,
-                            private val clientId: String,
-                            private val scopes: List<AuthScope> = emptyList()) : SocialLoginAction(activity) {
+class GoogleLoginActionImpl(
+    activity: FragmentActivity,
+    private val clientId: String,
+    private val scopes: List<AuthScope> = emptyList()
+) : SocialLoginAction(activity), LifecycleObserver {
 
     companion object {
         private const val REQUEST_CODE_GOOGLE = 10003
+    }
+
+    init {
+        activity.lifecycle.addObserver(this)
     }
 
     private var googleApi: GoogleApiClient? = null
@@ -44,12 +53,12 @@ class GoogleLoginActionImpl(activity: Activity,
 
     override fun logout() {
         googleApi?.apply {
-            if (!isConnected) connect()
-
+            if (!isConnected) return
             Auth.GoogleSignInApi.signOut(googleApi)
-                    .setResultCallback {
-                        googleApi?.disconnect()
-                    }
+                .setResultCallback {
+                    googleApi?.disconnect()
+                    googleApi = null
+                }
         }
     }
 
@@ -67,7 +76,8 @@ class GoogleLoginActionImpl(activity: Activity,
         callback?.onError(SocialLoginException(SocialType.GOOGLE))
     }
 
-    override fun cancelRequest() {
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun onDestroy() {
         googleApi?.disconnect()
     }
 
@@ -75,14 +85,14 @@ class GoogleLoginActionImpl(activity: Activity,
         if (googleApi != null) return
 
         val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestProfile()
-                .requestEmail()
-                .addScopes()
-                .requestIdToken(clientId)
+            .requestProfile()
+            .requestEmail()
+            .addScopes()
+            .requestIdToken(clientId)
 
         googleApi = GoogleApiClient.Builder(activity)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, options.build())
-                .build()
+            .addApi(Auth.GOOGLE_SIGN_IN_API, options.build())
+            .build()
     }
 
     private fun GoogleSignInOptions.Builder.addScopes(): GoogleSignInOptions.Builder {

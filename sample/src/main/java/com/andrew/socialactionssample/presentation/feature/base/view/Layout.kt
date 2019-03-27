@@ -1,6 +1,6 @@
 package com.andrew.socialactionssample.presentation.feature.base.view
 
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 
 /**
  * Created by Andrew on 16.06.2018.
