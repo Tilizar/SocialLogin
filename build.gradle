@@ -1,11 +1,9 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 ext {
     bintrayRepo = 'social_login'
 
     publishedGroupId = 'com.andrew.social.login'
     libraryName = 'social_login'
-    libraryVersion = '0.0.1'
+    libraryVersion = '1.0.0'
 
     siteUrl = 'https://github.com/AndrewHeyO/SocialLogin'
     issuesUrl = 'https://github.com/AndrewHeyO/SocialLogin/issues'
@@ -33,9 +31,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
