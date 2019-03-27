@@ -1,7 +1,7 @@
 package com.andrew.socialactionssample.di.module
 
 import androidx.fragment.app.FragmentActivity
-import com.andrew.social.login.amazon.implicit.AmazonLoginActionImpl
+import com.andrew.social.login.amazon.explicit.AmazonLoginActionImpl
 import com.andrew.social.login.core.SocialType
 import com.andrew.social.login.core.action.SocialLoginAction
 import com.andrew.social.login.core.manager.SocialLoginManager
@@ -67,8 +67,7 @@ class SocialLoginModule {
     @Provides
     @IntoMap
     @SocialKey(SocialType.AMAZON)
-    //fun provideAmazonSocialAction(activity: FragmentActivity): SocialLoginAction = AmazonLoginActionImpl(activity, activity.getString(R.string.amazon_app_id), activity.getString(R.string.amazon_redirect_url))
-    fun provideAmazonSocialAction(activity: FragmentActivity): SocialLoginAction = AmazonLoginActionImpl(activity)
+    fun provideAmazonSocialAction(activity: FragmentActivity): SocialLoginAction = AmazonLoginActionImpl(activity, activity.getString(R.string.amazon_app_id), activity.getString(R.string.amazon_redirect_url))
 
     @Provides
     @IntoMap
